@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "244228577441",
+    "project_id": "najot-pay-8da1f",
+    "storage_bucket": "najot-pay-8da1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244228577441:android:71c24d82800558c791b8e0",
+        "android_client_info": {
+          "package_name": "com.example.abu_pay"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4vJLcKk5fMI-e-qEAhp2A55dgnT-sO7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
