@@ -15,6 +15,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   init()async{
+
     await Future.delayed(const Duration(seconds: 3));
     Navigator.pushNamedAndRemoveUntil(context, RouteNames.onBoardingRoute, (route) => false);
   }
