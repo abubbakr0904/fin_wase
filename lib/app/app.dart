@@ -1,3 +1,4 @@
+import 'package:abu_pay/blocs/connectivity/connectivity_bloc.dart';
 import 'package:abu_pay/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,25 +18,35 @@ class App extends StatelessWidget {
     LocalNotificationService.localNotificationService.init(navigatorKey);
 
     return MultiRepositoryProvider(
-      providers: [RepositoryProvider(create: (_) => AuthRepository())],
+      providers: [
+        RepositoryProvider(
+          create: (_) => AuthRepository(),
+        ),
+      ],
       child: MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => UserBloc()),
-        ],
-        child: ScreenUtilInit(
-          designSize: const Size(430, 932),
-          builder: (context, child) {
-            ScreenUtil.init(context);
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              initialRoute: RouteNames.splashScreen,
-              navigatorKey: navigatorKey,
-              onGenerateRoute: AppRoutes.generateRoute,
-            );
-          },
-          child: const SplashScreen(),
-        )
-      ),
+          providers: [
+            BlocProvider(
+              create: (context) => AuthBloc(
+                AuthRepository(),
+              ),
+            ),
+            BlocProvider(
+              create: (context) => ConnectivityBloc(),
+            )
+          ],
+          child: ScreenUtilInit(
+            designSize: const Size(430, 932),
+            builder: (context, child) {
+              ScreenUtil.init(context);
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                initialRoute: RouteNames.splashScreen,
+                navigatorKey: navigatorKey,
+                onGenerateRoute: AppRoutes.generateRoute,
+              );
+            },
+            child: const SplashScreen(),
+          )),
     );
   }
 }

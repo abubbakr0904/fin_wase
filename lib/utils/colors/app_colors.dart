@@ -1,5 +1,5 @@
 import 'dart:ui';
 
-class AppCOlors{
+class AppColors{
   static const accentBlue = Color(0xFF00D09E);
 }

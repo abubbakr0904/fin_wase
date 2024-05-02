@@ -1,36 +1,80 @@
+import 'package:abu_pay/blocs/auth/auth_event.dart';
+import 'package:abu_pay/blocs/auth/auth_state.dart';
+import 'package:abu_pay/data/models/form_state/prile_form_state.dart';
+import 'package:abu_pay/data/responce/network_responce.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/models/user_model/user_model.dart';
-import 'auth_event.dart';
-import 'auth_state.dart';
+import '../../data/repository/auth_repository.dart';
 
+class AuthBloc extends Bloc<AuthEvent, AuthState> {
+  final AuthRepository authRepository;
 
-class UserBloc extends Bloc<UserManagerEvent, UserState> {
-  UserBloc() : super(UserInitialState()) {
-    on<AddUserEvent>(_addUser);
-    on<AddUserFireStoreEvent>(_addUserCloudStore);
-    on<CallUserEvent>(_getAllUsers);
+  AuthBloc(this.authRepository)
+      : super(AuthState(
+            errorMessage: "", succesMessage: "", status: FormsSatus.pure)) {
+    on<CheckAuthentication>(_checkAuthetication);
+    on<LoginUserEvent>(_loginUser);
+    on<RegisterUserEvent>(_registerUser);
+    on<LogOutUserEvent>(_logOutUser);
+    on<AddUserFirestore>(_addUserFirestore);
   }
 
-  _addUser(AddUserEvent event, emit) async {
-    print("Kirdi bu auth");
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: event.userModel.email,
-        password: event.userModel.password
+  _checkAuthetication(CheckAuthentication event, emit) async {
+    NetworkResponse networkResponse = await authRepository.checkUser();
+
+    if (networkResponse.errorText.isEmpty) {
+      emit(
+        state.copyWith(status: FormsSatus.auth),
+      );
+    } else {
+      emit(
+        state.copyWith(status: FormsSatus.error),
+      );
+    }
+  }
+
+  _loginUser(LoginUserEvent event, emit) async {
+    NetworkResponse networkResponse =
+        await authRepository.loginWithEmailAndPassword(
+      email: event.profileModel.email,
+      password: event.profileModel.password,
     );
+
+    if (networkResponse.errorText.isEmpty) {
+      emit(
+        state.copyWith(status: FormsSatus.auth),
+      );
+    } else {
+      emit(
+        state.copyWith(status: FormsSatus.error , errorMessage: networkResponse.errorText),
+      );
+    }
   }
 
-  _addUserCloudStore(AddUserFireStoreEvent event, emit) async {
-    final fireDb = FirebaseFirestore.instance;
-    await fireDb.collection("users").add(event.userModell.toJson());
+  _registerUser(RegisterUserEvent event, emit) async {
+    NetworkResponse networkResponse =
+        await authRepository.registerWithEmailAndPassword(
+      email: event.profileModel.email,
+      password: event.profileModel.password,
+    );
+
+    if (networkResponse.errorText.isEmpty) {
+      emit(
+        state.copyWith(status: FormsSatus.auth),
+      );
+    } else {
+      emit(
+        state.copyWith(status: FormsSatus.error , errorMessage: networkResponse.errorText),
+      );
+    }
   }
 
-  _getAllUsers(CallUserEvent event, emit) async {
-    emit(UserLoadingState());
+  _logOutUser(LogOutUserEvent event, emit) async {
+    await authRepository.logOutUser();
+  }
+  _addUserFirestore(AddUserFirestore event , emit) async {
     final db = FirebaseFirestore.instance;
-    emit(UserSuccessState(users: await db.collection("users").get().then((value) =>
-        value.docs.map((e) => UserModel.fromJson(e.data())).toList(),),),);
+    await db.collection("users").add(event.profileModel.toJson());
   }
 }

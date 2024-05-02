@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>244228577441-1dv5u1nim8qp2h5t6vc1dt2m4m7hvh5i.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.244228577441-1dv5u1nim8qp2h5t6vc1dt2m4m7hvh5i</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCxKt0cYLOIxTlQs0hhGAy9Gv3KMUKBtjc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>244228577441</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.abuPay</string>
+	<key>PROJECT_ID</key>
+	<string>najot-pay-8da1f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>najot-pay-8da1f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:244228577441:ios:c099254ebd45d9e191b8e0</string>
+</dict>
+</plist>

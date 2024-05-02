@@ -38,7 +38,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppCOlors.accentBlue,
+        backgroundColor: AppColors.accentBlue,
         onPressed: () {
           if (activeIndex == 1) {
             StorageRepository.setBool(

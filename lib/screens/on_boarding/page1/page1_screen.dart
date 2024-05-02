@@ -20,7 +20,7 @@ class _Page1ScreenState extends State<Page1Screen> {
           padding: EdgeInsets.symmetric(vertical: 123.h , horizontal: 40.w),
           width: double.infinity,
           height: MediaQuery.of(context).size.height,
-          color : AppCOlors.accentBlue,
+          color : AppColors.accentBlue,
           child : Text("Welcome to Expense Manager" , style: TextStyle(
             color : Colors.black,
             fontSize: 30.sp,
@@ -50,7 +50,7 @@ class _Page1ScreenState extends State<Page1Screen> {
                     width: 15.w,
                     height: 15.w,
                     decoration: BoxDecoration(
-                      color : AppCOlors.accentBlue,
+                      color : AppColors.accentBlue,
                       borderRadius: BorderRadius.circular(100.r)
                     ),
                   ),

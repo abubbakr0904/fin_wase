@@ -1,47 +1,52 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:equatable/equatable.dart';
 
 import '../../data/models/user_model/user_model.dart';
 
-abstract class UserManagerEvent {
-  const UserManagerEvent();
+abstract class AuthEvent extends Equatable{
+
+  @override
+  List<Object> get props => [];
 }
 
-class AddUserEvent extends UserManagerEvent {
-  final UserModel userModel;
-
-  const AddUserEvent({
-    required this.userModel,
-  });
-
-  List<Object?> get props => [
-    userModel,
-  ];
+class CheckAuthentication extends AuthEvent
+{
+  @override
+  List<Object> get props => [];
 }
 
-class AddUserFireStoreEvent extends UserManagerEvent {
-  final UserModel userModell;
 
-  AddUserFireStoreEvent({required this.userModell});
+class LoginUserEvent extends AuthEvent
+{
+  final ProfileModel profileModel;
 
-  List<Object?> get props => [
-    userModell, /*contextFirst*/
-  ];
+  LoginUserEvent({required this.profileModel});
+
+  @override
+  List<Object> get props => [profileModel];
 }
 
-class AddAllUserEvent extends UserManagerEvent {
-  final UserModel userModel;
+class RegisterUserEvent extends AuthEvent
+{
+  final ProfileModel profileModel;
 
-  AddAllUserEvent({required this.userModel});
+  RegisterUserEvent({required this.profileModel});
 
-  List<Object?> get props => [
-    userModel,
-  ];
+  @override
+  List<Object> get props => [profileModel];
 }
 
-class CallUserEvent extends UserManagerEvent {}
+class AddUserFirestore extends AuthEvent
+{
+  final ProfileModel profileModel;
 
-class AllUserEvent extends UserManagerEvent {
-  final List<User> users;
+  AddUserFirestore({required this.profileModel});
 
-  AllUserEvent({required this.users});
+  @override
+  List<Object> get props => [profileModel];
+}
+
+class LogOutUserEvent extends AuthEvent
+{
+  @override
+  List<Object> get props => [];
 }

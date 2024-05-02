@@ -12,7 +12,12 @@
           "package_name": "com.example.abu_pay"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "244228577441-mtnngabign455kj8p3330qhttj0gnptd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD4vJLcKk5fMI-e-qEAhp2A55dgnT-sO7M"
@@ -20,7 +25,91 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244228577441-mtnngabign455kj8p3330qhttj0gnptd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "244228577441-1dv5u1nim8qp2h5t6vc1dt2m4m7hvh5i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.abuPay"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244228577441:android:b232175d6e8e152e91b8e0",
+        "android_client_info": {
+          "package_name": "fin.wase.pay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244228577441-mtnngabign455kj8p3330qhttj0gnptd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4vJLcKk5fMI-e-qEAhp2A55dgnT-sO7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244228577441-mtnngabign455kj8p3330qhttj0gnptd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "244228577441-1dv5u1nim8qp2h5t6vc1dt2m4m7hvh5i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.abuPay"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244228577441:android:be121c667cd9755b91b8e0",
+        "android_client_info": {
+          "package_name": "fin.wise.pay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244228577441-mtnngabign455kj8p3330qhttj0gnptd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4vJLcKk5fMI-e-qEAhp2A55dgnT-sO7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244228577441-mtnngabign455kj8p3330qhttj0gnptd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "244228577441-1dv5u1nim8qp2h5t6vc1dt2m4m7hvh5i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.abuPay"
+              }
+            }
+          ]
         }
       }
     }

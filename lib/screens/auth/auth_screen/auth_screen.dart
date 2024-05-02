@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:abu_pay/screens/auth/login_screen/login_screen.dart';
+import 'package:abu_pay/screens/auth/register_screen/register_screen.dart';
 import 'package:abu_pay/utils/colors/app_colors.dart';
 import 'package:abu_pay/utils/images/app_images.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,7 +33,7 @@ class _AuthScreenState extends State<AuthScreen> {
             Text(
               "FinWise",
               style: TextStyle(
-                  color: AppCOlors.accentBlue,
+                  color: AppColors.accentBlue,
                   fontSize: 52.sp,
                   fontWeight: FontWeight.w700,
                   fontFamily: AppImages.fontPoppins),
@@ -53,7 +54,7 @@ class _AuthScreenState extends State<AuthScreen> {
               width: 207.w,
               child: TextButton(
                   style: TextButton.styleFrom(
-                      backgroundColor: AppCOlors.accentBlue),
+                      backgroundColor: AppColors.accentBlue),
                   onPressed: () {
                     Navigator.push(context, CupertinoPageRoute(builder: (context)=>const LogInScreen()));
                   },
@@ -71,8 +72,10 @@ class _AuthScreenState extends State<AuthScreen> {
               width: 207.w,
               child: TextButton(
                   style: TextButton.styleFrom(
-                      backgroundColor: AppCOlors.accentBlue.withOpacity(0.2),),
-                  onPressed: () {},
+                      backgroundColor: AppColors.accentBlue.withOpacity(0.2),),
+                  onPressed: () {
+                    Navigator.push(context, CupertinoPageRoute(builder: (context)=> const RegisterScreen()));
+                  },
                   child: Text(
                     "Sign Up",
                     style: TextStyle(

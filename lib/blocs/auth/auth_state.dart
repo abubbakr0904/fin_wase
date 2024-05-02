@@ -1,21 +1,29 @@
-import '../../data/models/user_model/user_model.dart';
+import 'package:abu_pay/data/models/form_state/prile_form_state.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 
-abstract class UserState {}
+class AuthState extends Equatable {
+  final String errorMessage;
+  final String succesMessage;
+  final FormsSatus status;
 
-class UserInitialState extends UserState {}
+  AuthState(
+      {required this.errorMessage,
+      required this.succesMessage,
+      required this.status});
 
-class UserLoadingState extends UserState {}
+  AuthState copyWith({
+    String? errorMessage,
+    String? succesMessage,
+    FormsSatus? status,
+  }) {
+    return AuthState(
+      errorMessage: errorMessage ?? this.errorMessage,
+      succesMessage: succesMessage ?? this.succesMessage,
+      status: status ?? this.status,
+    );
+  }
 
-class UserSuccessState extends UserState {
-  UserSuccessState({required this.users});
-
-  final List<UserModel> users;
+  @override
+  List<Object> get props => [status, errorMessage, succesMessage];
 }
-
-class UserErrorState extends UserState {
-  UserErrorState({required this.errorText});
-
-  final String errorText;
-}
-
-class UserDeletedState extends UserState {}
