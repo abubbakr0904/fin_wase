@@ -28,9 +28,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController password2 = TextEditingController();
 
   init() {
-    fullname.clear();
-    email.clear();
-    phoneNumber.clear();
     password1.clear();
     password2.clear();
   }
@@ -371,9 +368,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     context.read<AuthBloc>().add(
                                         RegisterUserEvent(
                                             profileModel: profileModel));
-                                    context.read<AuthBloc>().add(
-                                      AddUserFirestore(profileModel: profileModel)
-                                    );
                                     Fluttertoast.showToast(
                                         msg: "Congratulation 😃",
                                         toastLength: Toast.LENGTH_SHORT,
@@ -418,5 +412,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
         },
       ),
     );
+  }
+  @override
+  void dispose() {
+    password1.dispose();
+    password2.dispose();
+    phoneNumber.dispose();
+    fullname.dispose();
+    email.dispose();
+    super.dispose();
   }
 }

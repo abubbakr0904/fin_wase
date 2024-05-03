@@ -195,7 +195,7 @@ class _LogInScreenState extends State<LogInScreen> {
                               context.read<AuthBloc>().add(
                                 LoginUserEvent(profileModel: profileModel)
                               );
-                              if(state.status == FormsSatus.auth){
+                              if(state.errorMessage.isEmpty){
                                 Fluttertoast.showToast(
                                     msg: "Welcome 😃",
                                     toastLength: Toast.LENGTH_SHORT,
