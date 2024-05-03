@@ -1,5 +1,3 @@
-import 'package:abu_pay/blocs/user/user_event.dart';
-import 'package:abu_pay/data/models/user_model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:core';

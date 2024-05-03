@@ -3,6 +3,7 @@ import 'package:abu_pay/blocs/user/user_state.dart';
 import 'package:abu_pay/data/models/form_state/prile_form_state.dart';
 import 'package:abu_pay/data/models/user_model/user_model.dart';
 import 'package:abu_pay/data/repository/user_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/responce/network_responce.dart';

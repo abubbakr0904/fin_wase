@@ -61,7 +61,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       email: event.profileModel.email,
       password: event.profileModel.password,
     );
-
     if (networkResponse.errorText.isEmpty) {
       UserCredential userCredential = networkResponse.data as UserCredential;
       ProfileModel profileModel =
