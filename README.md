@@ -1,6 +1,7 @@
 # abu_pay
 
 A new Flutter project.
+1 - vidio da sihup qilindi login qilinganda internet yaxshi ishlamay qolgan ekan shuning uchun ikkita vidio boldi
 
 ## Getting Started
 
