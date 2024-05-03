@@ -6,16 +6,19 @@ class ProfileModel {
   final String imageUrl;
   final String phoneNumber;
   final String userId;
+  final String fcmToken;
+  final String uuid;
 
-  ProfileModel({
-    required this.username,
-    required this.lastname,
-    required this.password,
-    required this.email,
-    required this.imageUrl,
-    required this.phoneNumber,
-    required this.userId,
-  });
+  ProfileModel(
+      {required this.username,
+      required this.lastname,
+      required this.password,
+      required this.email,
+      required this.imageUrl,
+      required this.phoneNumber,
+      required this.userId,
+      required this.fcmToken,
+      required this.uuid});
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) {
     return ProfileModel(
@@ -25,7 +28,9 @@ class ProfileModel {
         email: json["email"] ?? "",
         imageUrl: json["imageUrl"] ?? "",
         phoneNumber: json["phoneNumber"] ?? "",
-        userId: json["userId"] ?? "");
+        userId: json["userId"] ?? "",
+        fcmToken: json["fcmToken"] ?? "",
+        uuid: json["uuid"] ?? "");
   }
 
   ProfileModel copyWith({
@@ -36,6 +41,8 @@ class ProfileModel {
     String? imageUrl,
     String? phoneNumber,
     String? userId,
+    String? fcmToken,
+    String? uuid,
   }) {
     return ProfileModel(
       username: username ?? this.username,
@@ -45,19 +52,46 @@ class ProfileModel {
       imageUrl: imageUrl ?? this.imageUrl,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       userId: userId ?? this.userId,
+      fcmToken: fcmToken ?? this.fcmToken,
+      uuid: uuid ?? this.uuid,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       "username": username,
-      "lastname" : lastname,
-      "password" : password,
-      "email" : email,
-      "imageUrl" : imageUrl,
-      "phoneNumber" : phoneNumber,
-      "userId" : userId
+      "lastname": lastname,
+      "password": password,
+      "email": email,
+      "imageUrl": imageUrl,
+      "phoneNumber": phoneNumber,
+      "userId": userId,
+      "fcmToken": fcmToken,
+      "uuid": uuid
     };
   }
-  static ProfileModel initial()=>ProfileModel(username: "", lastname: "", password: "", email: "", imageUrl: "", phoneNumber: "", userId: "");
+
+
+  Map<String, dynamic> toJsonForUpdate() {
+    return {
+      "username": username,
+      "lastname": lastname,
+      "password": password,
+      "email": email,
+      "imageUrl": imageUrl,
+      "phoneNumber": phoneNumber,
+      "userId": userId,
+    };
+  }
+
+  static ProfileModel initial() => ProfileModel(
+      username: "",
+      lastname: "",
+      password: "",
+      email: "",
+      imageUrl: "",
+      phoneNumber: "",
+      userId: "",
+      fcmToken: "",
+      uuid: "");
 }

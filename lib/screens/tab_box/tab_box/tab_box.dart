@@ -1,3 +1,4 @@
+import 'package:abu_pay/screens/tab_box/profile_screen/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../home_screen/home_screen.dart';
@@ -16,9 +17,9 @@ class _TabBox1State extends State<TabBox1> {
   @override
   void initState() {
     _screens = [
-      HomeScreen(),
-      HomeScreen(),
-      HomeScreen(),
+      const HomeScreen(),
+      const HomeScreen(),
+      const ProfileScreen(),
     ];
     super.initState();
   }

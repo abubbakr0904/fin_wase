@@ -33,8 +33,8 @@ class _LogInScreenState extends State<LogInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<AuthBloc , AuthState>(
-        builder: (context , state){
+      body: BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) {
           return Stack(
             children: [
               Container(
@@ -90,12 +90,13 @@ class _LogInScreenState extends State<LogInScreen> {
                           validator: (val) {
                             if (val!.isEmpty) {
                               return 'Please fill in this field';
-                            } else if (!AppConstants.emailRegExp.hasMatch(val)) {
+                            } else if (!AppConstants.emailRegExp
+                                .hasMatch(val)) {
                               return 'Please enter a valid email';
                             }
                             return null;
                           },
-                          onChanged: (v){},
+                          onChanged: (v) {},
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             filled: true,
@@ -111,12 +112,12 @@ class _LogInScreenState extends State<LogInScreen> {
                             errorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(100.r),
                               borderSide:
-                              const BorderSide(color: Colors.red, width: 1),
+                                  const BorderSide(color: Colors.red, width: 1),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(100.r),
                               borderSide:
-                              const BorderSide(color: Colors.red, width: 1),
+                                  const BorderSide(color: Colors.red, width: 1),
                             ),
                           ),
                         ),
@@ -157,7 +158,7 @@ class _LogInScreenState extends State<LogInScreen> {
                             return null;
                           },
                           keyboardType: TextInputType.emailAddress,
-                          onChanged: (v){},
+                          onChanged: (v) {},
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: const Color(0xFFDFF7E2),
@@ -172,12 +173,12 @@ class _LogInScreenState extends State<LogInScreen> {
                             errorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(100.r),
                               borderSide:
-                              const BorderSide(color: Colors.red, width: 1),
+                                  const BorderSide(color: Colors.red, width: 1),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(100.r),
                               borderSide:
-                              const BorderSide(color: Colors.red, width: 1),
+                                  const BorderSide(color: Colors.red, width: 1),
                             ),
                           ),
                         ),
@@ -191,11 +192,20 @@ class _LogInScreenState extends State<LogInScreen> {
                             style: TextButton.styleFrom(
                                 backgroundColor: AppColors.accentBlue),
                             onPressed: () {
-                              ProfileModel profileModel = ProfileModel(username: "", lastname: "", password: password.text, email: email.text, imageUrl: "", phoneNumber: "", userId: "");
-                              context.read<AuthBloc>().add(
-                                LoginUserEvent(profileModel: profileModel)
+                              ProfileModel profileModel = ProfileModel(
+                                username: "",
+                                lastname: "",
+                                password: password.text,
+                                email: email.text,
+                                imageUrl: "",
+                                phoneNumber: "",
+                                userId: "",
+                                fcmToken: "",
+                                uuid: "",
                               );
-                              if(state.errorMessage.isEmpty){
+                              context.read<AuthBloc>().add(
+                                  LoginUserEvent(profileModel: profileModel));
+                              if (state.errorMessage.isEmpty) {
                                 Fluttertoast.showToast(
                                     msg: "Welcome 😃",
                                     toastLength: Toast.LENGTH_SHORT,
@@ -204,9 +214,12 @@ class _LogInScreenState extends State<LogInScreen> {
                                     textColor: Colors.green,
                                     backgroundColor: Colors.white,
                                     fontSize: 16.0);
-                                Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context)=>const TabBox1()), (route) => false);
-                              }
-                              else{
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    CupertinoPageRoute(
+                                        builder: (context) => const TabBox1()),
+                                    (route) => false);
+                              } else {
                                 Fluttertoast.showToast(
                                     msg: "User not found ☹️",
                                     toastLength: Toast.LENGTH_SHORT,
@@ -245,7 +258,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         child: TextButton(
                           style: TextButton.styleFrom(
                             backgroundColor:
-                            AppColors.accentBlue.withOpacity(0.2),
+                                AppColors.accentBlue.withOpacity(0.2),
                           ),
                           onPressed: () {
                             Navigator.push(

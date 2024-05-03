@@ -1,5 +1,7 @@
 import 'package:abu_pay/blocs/auth/auth_bloc.dart';
 import 'package:abu_pay/blocs/auth/auth_event.dart';
+import 'package:abu_pay/blocs/user/user_bloc.dart';
+import 'package:abu_pay/blocs/user/user_event.dart';
 import 'package:abu_pay/data/models/user_model/user_model.dart';
 import 'package:abu_pay/screens/tab_box/tab_box/tab_box.dart';
 import 'package:abu_pay/utils/colors/app_colors.dart';
@@ -364,10 +366,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         email: email.text,
                                         imageUrl: "",
                                         phoneNumber: phoneNumber.text,
-                                        userId: "");
+                                        userId: "",
+                                        fcmToken: "",
+                                        uuid: "");
                                     context.read<AuthBloc>().add(
                                         RegisterUserEvent(
                                             profileModel: profileModel));
+                                    context.read<UserBloc>().add(
+                                      AddUserCollectionEvent(profileModel: profileModel)
+                                    );
                                     Fluttertoast.showToast(
                                         msg: "Congratulation 😃",
                                         toastLength: Toast.LENGTH_SHORT,
@@ -376,7 +383,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         textColor: Colors.green,
                                         backgroundColor: Colors.white,
                                         fontSize: 16.0);
-                                    Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context)=> const TabBox1()), (route) => false);
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        CupertinoPageRoute(
+                                            builder: (context) =>
+                                                const TabBox1()),
+                                        (route) => false);
                                   } else {
                                     Fluttertoast.showToast(
                                         msg: "Password is not correct",
@@ -413,6 +425,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
+
   @override
   void dispose() {
     password1.dispose();

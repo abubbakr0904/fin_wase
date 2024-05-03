@@ -3,6 +3,7 @@ import 'package:abu_pay/blocs/auth/auth_state.dart';
 import 'package:abu_pay/data/models/form_state/prile_form_state.dart';
 import 'package:abu_pay/data/responce/network_responce.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/repository/auth_repository.dart';
@@ -60,6 +61,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
 
     if (networkResponse.errorText.isEmpty) {
+      UserCredential userCredential = networkResponse.data as UserCredential;
+      event.profileModel.copyWith(uuid: userCredential.user!.uid);
       emit(
         state.copyWith(status: FormsSatus.auth),
       );
