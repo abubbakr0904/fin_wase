@@ -369,6 +369,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         userId: "",
                                         fcmToken: "",
                                         uuid: "");
+      print("hello");
                                     context.read<AuthBloc>().add(
                                         RegisterUserEvent(
                                             profileModel: profileModel));
