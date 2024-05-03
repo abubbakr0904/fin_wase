@@ -359,22 +359,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                                 onPressed: () {
                                   if (password2.text == password1.text) {
-                                    ProfileModel profileModel = ProfileModel(
+                                     state.profileModel.copyWith(
                                         username: fullname.text,
-                                        lastname: "",
                                         password: password1.text,
                                         email: email.text,
-                                        imageUrl: "",
                                         phoneNumber: phoneNumber.text,
-                                        userId: "",
-                                        fcmToken: "",
-                                        uuid: "");
-      print("hello");
+                                     );
                                     context.read<AuthBloc>().add(
                                         RegisterUserEvent(
-                                            profileModel: profileModel));
+                                            profileModel: state.profileModel));
                                     context.read<UserBloc>().add(
-                                      AddUserCollectionEvent(profileModel: profileModel)
+                                      AddUserCollectionEvent(profileModel: state.profileModel)
                                     );
                                     Fluttertoast.showToast(
                                         msg: "Congratulation 😃",

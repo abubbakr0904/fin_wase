@@ -27,17 +27,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       body : BlocBuilder<UserBloc , UserState>(
         builder: (context , state){
-          return Container(
-            child : TextButton(
-              onPressed: (){
-                ProfileModel profileModel = ProfileModel(username: "Abdulloh", lastname: "Hasanov", password: "sexy", email: "baubaubs@gmail.com", imageUrl: "hi", phoneNumber: "+998930374441", userId: "", fcmToken: "", uuid: "");
-                context.read<UserBloc>().add(
-                  AddUserCollectionEvent(profileModel: profileModel)
-                );
-              },
-              child : Text("add")
-            ),
-
+          return Column(
+            children: [
+              Container(
+                width: double.infinity,
+                child : Center(
+                  child :Text("${state.profileModel.username}\n${state.profileModel.email}")
+                )
+              ),
+              Text("Qondaye")
+            ],
           );
         },
       )

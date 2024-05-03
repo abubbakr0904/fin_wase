@@ -1,27 +1,18 @@
 import 'package:abu_pay/data/models/user_model/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import '../responce/network_responce.dart';
 
 class UserProfileRepository {
   Future<NetworkResponse> addUser(ProfileModel profileModel) async {
+    User? user = FirebaseAuth.instance.currentUser;
     try {
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection(
-          "users").get();
-      List<ProfileModel> users = querySnapshot.docs.map((e) =>
-          ProfileModel.fromJson(e.data() as Map<String, dynamic>)).toList();
-      bool isHave = false;
-      for (var user in users) {
-        if (user.email == profileModel.email) {
-          isHave = true;
-        }
-      }
-      if (isHave == false) {
         DocumentReference documentReference = await FirebaseFirestore.instance
             .collection("users").add(profileModel.toJson());
         await FirebaseFirestore.instance.collection("users").doc(
             documentReference.id).update({"userId": documentReference.id});
-      }
       return NetworkResponse(data: "succes");
     } on FirebaseException catch (error) {
       debugPrint("QOSHISHDA XATOLIK : ${error}");
@@ -61,14 +52,38 @@ class UserProfileRepository {
       return NetworkResponse(errorText: error.code);
     }
   }
-  Future<NetworkResponse> getuserById(String uid) async {
-    try{
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection("users").where("uuid" , isEqualTo : uid).get();
-      List<ProfileModel> users = querySnapshot.docs.map((e) => ProfileModel.fromJson(e.data() as Map<String , dynamic>)).toList();
-      return NetworkResponse(data: users.isEmpty ? ProfileModel.initial() : users.first);
-    } on FirebaseException catch(error){
-      debugPrint("GET QILISHDA HATOLIK uid");
-      return NetworkResponse(errorText: error.code);
+
+  Future<NetworkResponse> getUserByUuId() async {
+    NetworkResponse networkResponse = NetworkResponse();
+
+    User? user = FirebaseAuth.instance.currentUser;
+    String uuId = "";
+    if (user != null) {
+      // debugPrint("UUID getUserByUuId: ${user.uid}------");
+
+      uuId = user.uid;
     }
+
+    try {
+      QuerySnapshot querySnapshot = await 
+          FirebaseFirestore.instance
+          .collection("users")
+          .where("uu_id", isEqualTo: uuId)
+          .get();
+
+      List<ProfileModel> users = querySnapshot.docs
+          .map((e) => ProfileModel.fromJson(ProfileModel.convertMap(e)))
+          .toList();
+
+      networkResponse.data = users.isEmpty ? ProfileModel.initial() : users.first;
+    } on FirebaseException catch (_) {
+      networkResponse.errorText =
+      "Error :(  on FirebaseException catch (_) getUserByUuId ";
+    } catch (_) {
+      // debugPrint(_.toString());
+      networkResponse.errorText = "Error :( catch (_) getUserByUuId ";
+    }
+
+    return networkResponse;
   }
 }

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ProfileModel {
   final String username;
   final String lastname;
@@ -31,6 +33,19 @@ class ProfileModel {
         userId: json["userId"] ?? "",
         fcmToken: json["fcmToken"] ?? "",
         uuid: json["uuid"] ?? "");
+  }
+
+  static Map<String, dynamic> convertMap(DocumentSnapshot documentSnapshot) {
+    return {
+      "imageUrl": documentSnapshot["imageUrl"],
+      "email": documentSnapshot["email"],
+      "username": documentSnapshot["username"],
+      "lastname": documentSnapshot["lastname"],
+      "password": documentSnapshot["password"],
+      "phoneNumber": documentSnapshot["phoneNumber"],
+      "userId": documentSnapshot["userId"],
+      "uuid": documentSnapshot["uuid"]
+    };
   }
 
   ProfileModel copyWith({
