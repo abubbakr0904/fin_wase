@@ -1,4 +1,5 @@
 import 'package:abu_pay/data/models/user_model/user_model.dart';
+import 'package:abu_pay/utils/utility_functions/utility_funstions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,10 +15,10 @@ class UserProfileRepository {
       await FirebaseFirestore.instance
           .collection("users")
           .doc(documentReference.id)
-          .update({"userId": documentReference.id});
+          .update({"userId": documentReference.id, "uuid": profileModel.uuid});
       return NetworkResponse(data: "succes");
     } on FirebaseException catch (error) {
-      debugPrint("QOSHISHDA XATOLIK : $error");
+      UtilityFunctions.printMethod("QOSHISHDA XATOLIK : $error");
       return NetworkResponse(errorText: error.code);
     }
   }
@@ -25,7 +26,7 @@ class UserProfileRepository {
   Future<NetworkResponse> deleteUser(String docId) async {
     try {
       await FirebaseFirestore.instance.collection("users").doc(docId).delete();
-      return NetworkResponse(data: "succes");
+      return NetworkResponse(data: "success");
     } on FirebaseException catch (error) {
       debugPrint("O'chirishda xatolik : $error");
       return NetworkResponse(errorText: error.code);

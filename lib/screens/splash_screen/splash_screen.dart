@@ -1,11 +1,16 @@
-import 'package:abu_pay/screens/auth/auth_screen/auth_screen.dart';
+import 'package:abu_pay/blocs/user/user_bloc.dart';
+import 'package:abu_pay/blocs/user/user_event.dart';
+import 'package:abu_pay/screens/on_boarding/on_boarding_screen.dart';
 import 'package:abu_pay/utils/colors/app_colors.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../data/local/storage_repository.dart';
 import '../../utils/images/app_images.dart';
+import '../tab_box/tab_box/tab_box.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,21 +22,23 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   init() async {
     await Future.delayed(const Duration(seconds: 3));
+    User? user = FirebaseAuth.instance.currentUser;
     if (mounted) {
-      Navigator.push(
-        context,
-        CupertinoPageRoute(
-          builder: (context) => const AuthScreen(),
-        ),
-      );
-    }
-    // if (!mounted) return;
-    // User? user = FirebaseAuth.instance.currentUser;
-    // if (user != null) {
-    //   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TabBox1()), (route) => false);
-    // } else {
-    //   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const AuthScreen()), (route) => false);
-    // }
+      if (user != null) {
+        Navigator.pushAndRemoveUntil(
+            context, MaterialPageRoute(builder: (context) => const TabBox1()), (
+            route) => false);
+        BlocProvider.of<UserBloc>(context).add(
+          GetCurrentuser(uid: user!.uid)
+        );
+      } else {
+        bool isNewUser = StorageRepository.getBool(key: "is_new_user");
+        Navigator.pushAndRemoveUntil(context,
+            MaterialPageRoute(builder: (context) => const OnBoardingScreen()), (
+                route) => false);
+      }
+  }
+
   }
 
   @override

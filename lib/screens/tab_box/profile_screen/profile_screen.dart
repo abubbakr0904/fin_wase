@@ -23,7 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         appBar: AppBar(
           title: const Text("hammaga salom qannay ozi"),
         ),
-        body: BlocBuilder<UserBloc, UserState>(
+        body: BlocConsumer<UserBloc, UserState>(
           builder: (context, state) {
             return Column(
               children: [
@@ -36,6 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             );
           },
+          listener: (BuildContext context , UserState){},
         ));
   }
 }

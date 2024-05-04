@@ -70,10 +70,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   _getUser(GetCurrentuser event, emit) async {
     NetworkResponse networkResponse = await userRepository.getUserByUuId();
     if (networkResponse.errorText.isEmpty) {
-      emit(state.copyWith(status: FormsSatus.auth));
+      emit(state.copyWith(status: FormsSatus.auth , ));
     } else {
       emit(state.copyWith(
-          errorMessage: networkResponse.errorText, status: FormsSatus.error));
+          errorMessage: networkResponse.errorText, status: FormsSatus.error , successMessage: "authbekz"));
     }
   }
 }
