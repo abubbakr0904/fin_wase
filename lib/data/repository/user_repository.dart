@@ -64,20 +64,20 @@ class UserProfileRepository {
     NetworkResponse networkResponse = NetworkResponse();
 
     User? user = FirebaseAuth.instance.currentUser;
-    String uuId = "";
-    if (user != null) {
-      uuId = user.uid;
-    }
+    String uuId = user!.uid;
+
 
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection("users")
-          .where("uu_id", isEqualTo: uuId)
+          .where("uuid", isEqualTo: uuId)
           .get();
 
       List<ProfileModel> users = querySnapshot.docs
-          .map((e) => ProfileModel.fromJson(ProfileModel.convertMap(e)))
+          .map((e) => ProfileModel.fromJson(e as Map<String , dynamic>))
           .toList();
+      
+      UtilityFunctions.printMethod("CURRENT USERS IS LENGTH: ${users.length}");
 
       networkResponse.data =
           users.isEmpty ? ProfileModel.initial() : users.first;

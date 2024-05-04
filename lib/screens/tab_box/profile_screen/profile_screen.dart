@@ -25,6 +25,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         body: BlocConsumer<UserBloc, UserState>(
           builder: (context, state) {
+            if(state.successMessage == "authjon"){
+
+            }
             return Column(
               children: [
                 SizedBox(

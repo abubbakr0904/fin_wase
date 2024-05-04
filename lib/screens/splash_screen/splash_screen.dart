@@ -24,13 +24,12 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 3));
     User? user = FirebaseAuth.instance.currentUser;
     if (mounted) {
+      print("Katta qilin");
       if (user != null) {
+        print("null emas");
         Navigator.pushAndRemoveUntil(
             context, MaterialPageRoute(builder: (context) => const TabBox1()), (
             route) => false);
-        BlocProvider.of<UserBloc>(context).add(
-          GetCurrentuser(uid: user!.uid)
-        );
       } else {
         bool isNewUser = StorageRepository.getBool(key: "is_new_user");
         Navigator.pushAndRemoveUntil(context,

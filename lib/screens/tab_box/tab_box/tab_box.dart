@@ -1,6 +1,10 @@
 import 'package:abu_pay/screens/tab_box/profile_screen/profile_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../blocs/user/user_bloc.dart';
+import '../../../blocs/user/user_event.dart';
 import '../home_screen/home_screen.dart';
 
 class TabBox1 extends StatefulWidget {
@@ -21,6 +25,10 @@ class _TabBox1State extends State<TabBox1> {
       const HomeScreen(),
       const ProfileScreen(),
     ];
+
+    BlocProvider.of<UserBloc>(context).add(
+        GetCurrentuser(uid: FirebaseAuth.instance.currentUser!.uid)
+    );
     super.initState();
   }
 
