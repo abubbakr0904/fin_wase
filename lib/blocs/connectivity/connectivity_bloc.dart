@@ -7,11 +7,11 @@ import 'connectivity_state.dart';
 class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
   ConnectivityBloc()
       : super(
-    const ConnectivityState(
-      connectivityResult: ConnectivityResult.none,
-      hasInternet: false,
-    ),
-  ) {
+          const ConnectivityState(
+            connectivityResult: ConnectivityResult.none,
+            hasInternet: false,
+          ),
+        ) {
     on<CheckConnectivity>(_checkConnectivity);
   }
 
@@ -35,14 +35,14 @@ class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
     _checkInitialState(emit);
     await emit.onEach(_connectivity.onConnectivityChanged,
         onData: (List<ConnectivityResult> results) {
-          if (results.contains(ConnectivityResult.mobile) ||
-              results.contains(ConnectivityResult.wifi)) {
-            emit(state.copyWith(hasInternet: true));
-          } else {
-            emit(state.copyWith(hasInternet: false));
-          }
-          debugPrint("HAS INTERNET CONTINUES CHECK:${state.hasInternet}");
-          debugPrint("HAS INTERNET CONTINUES STATES:$results");
-        });
+      if (results.contains(ConnectivityResult.mobile) ||
+          results.contains(ConnectivityResult.wifi)) {
+        emit(state.copyWith(hasInternet: true));
+      } else {
+        emit(state.copyWith(hasInternet: false));
+      }
+      debugPrint("HAS INTERNET CONTINUES CHECK:${state.hasInternet}");
+      debugPrint("HAS INTERNET CONTINUES STATES:$results");
+    });
   }
 }

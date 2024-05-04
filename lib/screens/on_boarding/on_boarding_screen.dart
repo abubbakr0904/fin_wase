@@ -28,10 +28,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               controller: controller,
               onPageChanged: (index) {},
               physics: const NeverScrollableScrollPhysics(),
-              children: const [
-                Page1Screen(),
-                Page2Screen()
-              ],
+              children: const [Page1Screen(), Page2Screen()],
             ),
           ),
         ],
@@ -45,9 +42,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               key: "is_new_user",
               value: true,
             ).then(
-                  (value) {
-                Navigator.pushReplacementNamed(
-                    context, RouteNames.authRoute);
+              (value) {
+                Navigator.pushReplacementNamed(context, RouteNames.authRoute);
               },
             );
           } else {
@@ -61,11 +57,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         },
         child: Icon(
           Icons.arrow_forward,
-          color : Colors.white,
+          color: Colors.white,
           size: 20.sp,
         ),
       ),
     );
-
   }
 }

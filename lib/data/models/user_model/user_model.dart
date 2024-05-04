@@ -86,6 +86,13 @@ class ProfileModel {
     };
   }
 
+  Map<String, dynamic> toJsonForApi() {
+    return {
+      "username": username,
+      "password": password,
+      "email": email,
+    };
+  }
 
   Map<String, dynamic> toJsonForUpdate() {
     return {

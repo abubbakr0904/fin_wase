@@ -2,7 +2,6 @@ import 'package:abu_pay/blocs/auth/auth_bloc.dart';
 import 'package:abu_pay/blocs/auth/auth_event.dart';
 import 'package:abu_pay/data/models/user_model/user_model.dart';
 import 'package:abu_pay/screens/auth/register_screen/register_screen.dart';
-import 'package:abu_pay/screens/tab_box/home_screen/home_screen.dart';
 import 'package:abu_pay/screens/tab_box/tab_box/tab_box.dart';
 import 'package:abu_pay/utils/colors/app_colors.dart';
 import 'package:abu_pay/utils/images/app_images.dart';
@@ -12,10 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import '../../../blocs/auth/auth_state.dart';
-import '../../../data/models/form_state/prile_form_state.dart';
-import '../../../data/models/form_state/prile_form_state.dart';
 import '../../../utils/contants/app_constants.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -28,7 +24,6 @@ class LogInScreen extends StatefulWidget {
 class _LogInScreenState extends State<LogInScreen> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {

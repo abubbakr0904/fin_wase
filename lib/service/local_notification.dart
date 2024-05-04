@@ -13,7 +13,7 @@ Future<void> configureLocalTimeZone() async {
 
 class LocalNotificationService {
   static final LocalNotificationService localNotificationService =
-  LocalNotificationService._();
+      LocalNotificationService._();
 
   factory LocalNotificationService() {
     return localNotificationService;
@@ -22,16 +22,16 @@ class LocalNotificationService {
   LocalNotificationService._();
 
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-  FlutterLocalNotificationsPlugin();
+      FlutterLocalNotificationsPlugin();
 
   void init(GlobalKey<NavigatorState> navigatorKey) async {
     // Android
     const AndroidInitializationSettings androidInitializationSettings =
-    AndroidInitializationSettings("app_icon");
+        AndroidInitializationSettings("app_icon");
 
     //IOS
     final DarwinInitializationSettings initializationSettingsDarwin =
-    DarwinInitializationSettings(
+        DarwinInitializationSettings(
       onDidReceiveLocalNotification: onDidReceiveLocalNotification,
     );
 
@@ -41,33 +41,33 @@ class LocalNotificationService {
 
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onDidReceiveNotificationResponse: (notification) {
-          if (notification.payload != null) {
-            // Navigator.push(navigatorKey.currentContext!,
-            //     MaterialPageRoute(builder: (context) {
-            //   return UsersScreen();
-            // }));
-          }
-          print(notification.payload);
-        });
+      if (notification.payload != null) {
+        // Navigator.push(navigatorKey.currentContext!,
+        //     MaterialPageRoute(builder: (context) {
+        //   return UsersScreen();
+        // }));
+      }
+      debugPrint(notification.payload);
+    });
 
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-        IOSFlutterLocalNotificationsPlugin>()
+            IOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
+          alert: true,
+          badge: true,
+          sound: true,
+        );
     tz.initializeTimeZones();
   }
 
   @pragma('vm:entry-point')
   void notificationTapBackground(NotificationResponse notificationResponse) {
-    print("TAPPED FROM BACKGROUND");
+    debugPrint("TAPPED FROM BACKGROUND");
   }
 
   AndroidNotificationChannel androidNotificationChannel =
-  const AndroidNotificationChannel(
+      const AndroidNotificationChannel(
     "my_channel",
     "Notification Lesson ",
     importance: Importance.max,
@@ -76,12 +76,12 @@ class LocalNotificationService {
 
   //IOS
   void onDidReceiveLocalNotification(
-      int id,
-      String? title,
-      String? body,
-      String? payload,
-      ) async {
-    print(payload);
+    int id,
+    String? title,
+    String? body,
+    String? payload,
+  ) async {
+    debugPrint(payload);
   }
 
   void showNotification({
@@ -129,7 +129,7 @@ class LocalNotificationService {
                 channelDescription: 'Alarm Clock Notification')),
         androidScheduleMode: AndroidScheduleMode.alarmClock,
         uiLocalNotificationDateInterpretation:
-        UILocalNotificationDateInterpretation.absoluteTime);
+            UILocalNotificationDateInterpretation.absoluteTime);
   }
 
   void showPeriodicNotification({

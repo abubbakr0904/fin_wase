@@ -58,7 +58,7 @@ class LogInWithEmailAndPasswordFailure implements Exception {
       case 'invalid-credential':
         return const LogInWithEmailAndPasswordFailure('User not found!');
       default:
-        return LogInWithEmailAndPasswordFailure("$code");
+        return LogInWithEmailAndPasswordFailure(code);
     }
   }
 }

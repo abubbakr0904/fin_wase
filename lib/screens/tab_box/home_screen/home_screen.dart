@@ -1,4 +1,3 @@
-import 'package:abu_pay/app/app.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,7 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bu home Screen"),
+        title: const Text("Bu home Screen"),
       ),
     );
   }

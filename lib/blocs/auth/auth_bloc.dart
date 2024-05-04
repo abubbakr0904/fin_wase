@@ -3,6 +3,7 @@ import 'package:abu_pay/blocs/auth/auth_state.dart';
 import 'package:abu_pay/data/models/form_state/prile_form_state.dart';
 import 'package:abu_pay/data/responce/network_responce.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/repository/auth_repository.dart';
@@ -11,7 +12,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository authRepository;
 
   AuthBloc(this.authRepository)
-      : super(AuthState(
+      : super(const AuthState(
             errorMessage: "", succesMessage: "", status: FormsSatus.pure)) {
     on<CheckAuthentication>(_checkAuthetication);
     on<LoginUserEvent>(_loginUser);
@@ -54,6 +55,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   _registerUser(RegisterUserEvent event, emit) async {
+    debugPrint("keldi");
     NetworkResponse networkResponse =
         await authRepository.registerWithEmailAndPassword(
       email: event.profileModel.email,
@@ -61,10 +63,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
     if (networkResponse.errorText.isEmpty) {
       emit(
-        state.copyWith(status: FormsSatus.auth , succesMessage: "auth"),
+        state.copyWith(status: FormsSatus.auth, succesMessage: "auth"),
       );
     } else {
-      print(networkResponse.errorText);
       emit(
         state.copyWith(
             status: FormsSatus.error, errorMessage: networkResponse.errorText),

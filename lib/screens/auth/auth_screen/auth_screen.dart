@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:abu_pay/screens/auth/login_screen/login_screen.dart';
 import 'package:abu_pay/screens/auth/register_screen/register_screen.dart';
 import 'package:abu_pay/utils/colors/app_colors.dart';
@@ -56,7 +54,10 @@ class _AuthScreenState extends State<AuthScreen> {
                   style: TextButton.styleFrom(
                       backgroundColor: AppColors.accentBlue),
                   onPressed: () {
-                    Navigator.push(context, CupertinoPageRoute(builder: (context)=>const LogInScreen()));
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => const LogInScreen()));
                   },
                   child: Text(
                     "Log In",
@@ -67,14 +68,20 @@ class _AuthScreenState extends State<AuthScreen> {
                         fontFamily: AppImages.fontPoppins),
                   )),
             ),
-            SizedBox(height: 15.h,),
+            SizedBox(
+              height: 15.h,
+            ),
             SizedBox(
               width: 207.w,
               child: TextButton(
                   style: TextButton.styleFrom(
-                      backgroundColor: AppColors.accentBlue.withOpacity(0.2),),
+                    backgroundColor: AppColors.accentBlue.withOpacity(0.2),
+                  ),
                   onPressed: () {
-                    Navigator.push(context, CupertinoPageRoute(builder: (context)=> const RegisterScreen()));
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => const RegisterScreen()));
                   },
                   child: Text(
                     "Sign Up",
@@ -85,13 +92,17 @@ class _AuthScreenState extends State<AuthScreen> {
                         fontFamily: AppImages.fontPoppins),
                   )),
             ),
-            SizedBox(height: 10.h,),
-            Text("Forgot Password?" , style: TextStyle(
-              color : Colors.black,
-              fontFamily: AppImages.fontPoppins,
-              fontWeight:FontWeight.w500,
-              fontSize: 14.sp
-            ),)
+            SizedBox(
+              height: 10.h,
+            ),
+            Text(
+              "Forgot Password?",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: AppImages.fontPoppins,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14.sp),
+            )
           ],
         ),
       ),

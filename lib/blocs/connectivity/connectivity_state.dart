@@ -1,5 +1,3 @@
-
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
 
@@ -24,7 +22,7 @@ class ConnectivityState extends Equatable {
 
   @override
   List<Object> get props => [
-    connectivityResult,
-    hasInternet,
-  ];
+        connectivityResult,
+        hasInternet,
+      ];
 }

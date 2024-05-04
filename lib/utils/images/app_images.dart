@@ -1,4 +1,4 @@
-class AppImages{
+class AppImages {
   //svg
   static const facebookLogo = "assets/icons/facebook_logo.svg";
   static const googleLogo = "assets/icons/google_logo.svg";

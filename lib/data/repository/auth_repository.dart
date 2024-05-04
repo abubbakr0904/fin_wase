@@ -9,7 +9,7 @@ class AuthRepository {
   }) async {
     try {
       UserCredential userCredential =
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -20,7 +20,7 @@ class AuthRepository {
       );
     } catch (error) {
       return NetworkResponse(
-          errorText: "An unknown exception occurred: ${error}");
+          errorText: "An unknown exception occurred: $error");
     }
   }
 
@@ -43,7 +43,7 @@ class AuthRepository {
   }) async {
     try {
       UserCredential userCredential =
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -54,7 +54,7 @@ class AuthRepository {
       );
     } catch (error) {
       return NetworkResponse(
-          errorText: "An unknown exception occurred: ${error}");
+          errorText: "An unknown exception occurred: $error");
     }
   }
 

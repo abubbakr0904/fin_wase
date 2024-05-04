@@ -6,11 +6,11 @@ class AuthState extends Equatable {
   final String succesMessage;
   final FormsSatus status;
 
-  AuthState(
-      {required this.errorMessage,
-      required this.succesMessage,
-      required this.status,
-       });
+  const AuthState({
+    required this.errorMessage,
+    required this.succesMessage,
+    required this.status,
+  });
 
   AuthState copyWith({
     String? errorMessage,
