@@ -28,13 +28,14 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   init() async {
     await Future.delayed(Duration(seconds: 3));
-    if (!mounted) return;
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TabBox1()), (route) => false);
-    } else {
-      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const AuthScreen()), (route) => false);
-    }
+    Navigator.push(context, CupertinoPageRoute(builder: (context)=>const AuthScreen()));
+    // if (!mounted) return;
+    // User? user = FirebaseAuth.instance.currentUser;
+    // if (user != null) {
+    //   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const TabBox1()), (route) => false);
+    // } else {
+    //   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const AuthScreen()), (route) => false);
+    // }
   }
   @override
   void initState() {

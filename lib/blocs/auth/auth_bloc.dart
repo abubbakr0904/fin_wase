@@ -1,10 +1,8 @@
 import 'package:abu_pay/blocs/auth/auth_event.dart';
 import 'package:abu_pay/blocs/auth/auth_state.dart';
 import 'package:abu_pay/data/models/form_state/prile_form_state.dart';
-import 'package:abu_pay/data/models/user_model/user_model.dart';
 import 'package:abu_pay/data/responce/network_responce.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/repository/auth_repository.dart';
@@ -14,7 +12,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   AuthBloc(this.authRepository)
       : super(AuthState(
-            errorMessage: "", succesMessage: "", status: FormsSatus.pure , profileModel: ProfileModel.initial())) {
+            errorMessage: "", succesMessage: "", status: FormsSatus.pure)) {
     on<CheckAuthentication>(_checkAuthetication);
     on<LoginUserEvent>(_loginUser);
     on<RegisterUserEvent>(_registerUser);
@@ -62,13 +60,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       password: event.profileModel.password,
     );
     if (networkResponse.errorText.isEmpty) {
-      UserCredential userCredential = networkResponse.data as UserCredential;
-      ProfileModel profileModel =
-          event.profileModel.copyWith(uuid: userCredential.user!.uid);
       emit(
-        state.copyWith(status: FormsSatus.auth, profileModel: profileModel),
+        state.copyWith(status: FormsSatus.auth , succesMessage: "auth"),
       );
     } else {
+      print(networkResponse.errorText);
       emit(
         state.copyWith(
             status: FormsSatus.error, errorMessage: networkResponse.errorText),

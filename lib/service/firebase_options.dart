@@ -50,21 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD4vJLcKk5fMI-e-qEAhp2A55dgnT-sO7M',
-    appId: '1:244228577441:android:be121c667cd9755b91b8e0',
-    messagingSenderId: '244228577441',
-    projectId: 'najot-pay-8da1f',
-    storageBucket: 'najot-pay-8da1f.appspot.com',
+    apiKey: 'AIzaSyAHmI_PeJRiEEUI6vISLEZwnGPZGW9MgWg',
+    appId: '1:489000396928:android:3b8cc9c3243fee08925e65',
+    messagingSenderId: '489000396928',
+    projectId: 'finwise-8ccaa',
+    storageBucket: 'finwise-8ccaa.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCxKt0cYLOIxTlQs0hhGAy9Gv3KMUKBtjc',
-    appId: '1:244228577441:ios:3749462879e216f591b8e0',
-    messagingSenderId: '244228577441',
-    projectId: 'najot-pay-8da1f',
-    storageBucket: 'najot-pay-8da1f.appspot.com',
-    iosClientId: '244228577441-a64eq0uclcg6uc9vdpmroedkp532pfpp.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDk2XZSGSOi676wAi0lsVHJWD6KxrjqSd8',
+    appId: '1:489000396928:ios:33cc778b5d1bec6e925e65',
+    messagingSenderId: '489000396928',
+    projectId: 'finwise-8ccaa',
+    storageBucket: 'finwise-8ccaa.appspot.com',
     iosBundleId: 'fin.wise.pay',
   );
-
 }

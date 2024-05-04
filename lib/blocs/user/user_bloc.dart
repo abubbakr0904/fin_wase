@@ -20,7 +20,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<GetCurrentuser>(_getUser);
   }
   _addUserCollection(AddUserCollectionEvent event, emit) async {
-    NetworkResponse  networkResponse  = await userRepository.addUser(event.profileModel);
+    NetworkResponse  networkResponse  = await userRepository.insertUser(userModel: event.profileModel);
     if(networkResponse.errorText.isEmpty){
       emit(state.copyWith(status: FormsSatus.auth));
     }

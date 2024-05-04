@@ -1,5 +1,6 @@
 import 'package:abu_pay/blocs/auth/auth_bloc.dart';
 import 'package:abu_pay/blocs/auth/auth_event.dart';
+import 'package:abu_pay/blocs/auth/auth_state.dart';
 import 'package:abu_pay/blocs/user/user_bloc.dart';
 import 'package:abu_pay/blocs/user/user_event.dart';
 import 'package:abu_pay/data/models/user_model/user_model.dart';
@@ -10,8 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-import '../../../blocs/auth/auth_state.dart';
+import '../../../data/models/form_state/prile_form_state.dart';
 import '../../../utils/contants/app_constants.dart';
 import '../../../utils/images/app_images.dart';
 
@@ -39,8 +39,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<AuthBloc, AuthState>(
-        builder: (context, state) {
+      body: BlocConsumer<AuthBloc , AuthState>(
+        builder: (context , state){
           return Stack(
             children: [
               Container(
@@ -112,12 +112,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             errorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(100.r),
                               borderSide:
-                                  const BorderSide(color: Colors.red, width: 1),
+                              const BorderSide(color: Colors.red, width: 1),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(100.r),
                               borderSide:
-                                  const BorderSide(color: Colors.red, width: 1),
+                              const BorderSide(color: Colors.red, width: 1),
                             ),
                           ),
                         ),
@@ -165,12 +165,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             errorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(100.r),
                               borderSide:
-                                  const BorderSide(color: Colors.red, width: 1),
+                              const BorderSide(color: Colors.red, width: 1),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(100.r),
                               borderSide:
-                                  const BorderSide(color: Colors.red, width: 1),
+                              const BorderSide(color: Colors.red, width: 1),
                             ),
                           ),
                         ),
@@ -218,12 +218,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             errorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(100.r),
                               borderSide:
-                                  const BorderSide(color: Colors.red, width: 1),
+                              const BorderSide(color: Colors.red, width: 1),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(100.r),
                               borderSide:
-                                  const BorderSide(color: Colors.red, width: 1),
+                              const BorderSide(color: Colors.red, width: 1),
                             ),
                           ),
                         ),
@@ -272,12 +272,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             errorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(100.r),
                               borderSide:
-                                  const BorderSide(color: Colors.red, width: 1),
+                              const BorderSide(color: Colors.red, width: 1),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(100.r),
                               borderSide:
-                                  const BorderSide(color: Colors.red, width: 1),
+                              const BorderSide(color: Colors.red, width: 1),
                             ),
                           ),
                         ),
@@ -323,12 +323,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             errorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(100.r),
                               borderSide:
-                                  const BorderSide(color: Colors.red, width: 1),
+                              const BorderSide(color: Colors.red, width: 1),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(100.r),
                               borderSide:
-                                  const BorderSide(color: Colors.red, width: 1),
+                              const BorderSide(color: Colors.red, width: 1),
                             ),
                           ),
                         ),
@@ -357,36 +357,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             child: TextButton(
                                 style: TextButton.styleFrom(
                                   backgroundColor:
-                                      AppColors.accentBlue.withOpacity(0.2),
+                                  AppColors.accentBlue.withOpacity(0.2),
                                 ),
-                                onPressed: () {
+                                onPressed: () async {
                                   if (password2.text == password1.text) {
                                     profileModel = profileModel.copyWith(
-                                      email: email.text,
-                                      password: password1.text,
-                                      phoneNumber: phoneNumber.text,
-                                      username: fullname.text,
-                                    );
+                                        username: fullname.text,
+                                        password: password1.text,
+                                        email: email.text,
+                                        phoneNumber: phoneNumber.text,
+                                        );
                                     context.read<AuthBloc>().add(
                                         RegisterUserEvent(
                                             profileModel: profileModel));
-                                    context.read<UserBloc>().add(
-                                      AddUserCollectionEvent(profileModel: profileModel)
-                                    );
-                                    Fluttertoast.showToast(
-                                        msg: "Congratulation 😃",
-                                        toastLength: Toast.LENGTH_SHORT,
-                                        gravity: ToastGravity.TOP,
-                                        timeInSecForIosWeb: 1,
-                                        textColor: Colors.green,
-                                        backgroundColor: Colors.white,
-                                        fontSize: 16.0);
-                                    Navigator.pushAndRemoveUntil(
-                                        context,
-                                        CupertinoPageRoute(
-                                            builder: (context) =>
-                                                const TabBox1()),
-                                        (route) => false);
                                   } else {
                                     Fluttertoast.showToast(
                                         msg: "Password is not correct",
@@ -420,7 +403,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ],
           );
         },
-      ),
+        listener:  (BuildContext context, AuthState state) {
+          if (state.status == FormsSatus.error) {
+
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(state.errorMessage)));
+          } else if (state.status == FormsSatus.auth) {
+            if (state.succesMessage == "auth"){
+              debugPrint("O'hshadi :)");
+              Fluttertoast.showToast(
+                  msg: "Congratulation 😃",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.TOP,
+                  timeInSecForIosWeb: 1,
+                  textColor: Colors.green,
+                  backgroundColor: Colors.white,
+                  fontSize: 16.0);
+              context
+                  .read<UserBloc>()
+                  .add(AddUserCollectionEvent(profileModel: profileModel));
+            }
+            Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context)=>const TabBox1()), (route) => false);
+          }
+        },
+      )
     );
   }
 
