@@ -47,7 +47,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   uuid: FirebaseAuth.instance.currentUser!
                       .uid,
                 );
-                BlocProvider.of<UserBloc>(context).add(
+                BlocProvider.of<UserProfileBloc>(context).add(
                   AddUserCollectionEvent(
                     profileModel: profileModel,
                   ),

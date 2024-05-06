@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../blocs/auth/auth_bloc.dart';
 import '../data/repository/auth_repository.dart';
+import '../screens/local_auth/cubit/check_passsword.dart';
+import '../screens/local_auth/cubit/local_auth_cubit.dart';
 import '../screens/route.dart';
 import '../service/local_notification.dart';
 
@@ -24,20 +26,29 @@ class App extends StatelessWidget {
         RepositoryProvider(
           create: (_) => AuthRepository(),
         ),
+        RepositoryProvider(
+          create: (_) => UserProfileRepo(),
+        ),
       ],
       child: MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (context) => AuthBloc(
-                AuthRepository(),
-              ),
+              create: (context) =>
+                  AuthBloc(
+                    AuthRepository(),
+                  ),
             ),
             BlocProvider(
               create: (context) => ConnectivityBloc(),
             ),
             BlocProvider(
-              create: (context) => UserBloc(UserProfileRepository()),
-            )
+              create: (context) =>
+                  UserProfileBloc(
+                    context.read<UserProfileRepo>(),
+                  ),
+            ),
+            BlocProvider(create: (_) => PasswordCubit()),
+            BlocProvider(create: (_) => CheckCubit()),
           ],
           child: ScreenUtilInit(
             designSize: const Size(430, 932),

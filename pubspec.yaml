@@ -33,6 +33,8 @@ dependencies:
   fluttertoast: ^8.2.5
   rename: ^3.0.2
   icons_launcher: ^2.1.7
+  pinput: ^4.0.0
+  local_auth: ^2.2.0
 
   
 dev_dependencies:

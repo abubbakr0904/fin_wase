@@ -1,10 +1,9 @@
-import 'package:abu_pay/blocs/user/user_bloc.dart';
-import 'package:abu_pay/blocs/user/user_event.dart';
+// import 'package:abu_pay/screens/local_auth/entry_password.dart';
 import 'package:abu_pay/screens/on_boarding/on_boarding_screen.dart';
 import 'package:abu_pay/utils/colors/app_colors.dart';
+import 'package:abu_pay/utils/utility_functions/utility_funstions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -24,14 +23,15 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 3));
     User? user = FirebaseAuth.instance.currentUser;
     if (mounted) {
-      print("Katta qilin");
+      UtilityFunctions.printMethod("Katta qilin");
       if (user != null) {
-        print("null emas");
+        UtilityFunctions.printMethod("null emas");
         Navigator.pushAndRemoveUntil(
             context, MaterialPageRoute(builder: (context) => const TabBox1()), (
             route) => false);
       } else {
         bool isNewUser = StorageRepository.getBool(key: "is_new_user");
+        UtilityFunctions.printMethod(isNewUser);
         Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (context) => const OnBoardingScreen()), (
                 route) => false);
