@@ -1,4 +1,5 @@
 import 'package:abu_pay/blocs/card/card_bloc.dart';
+import 'package:abu_pay/data/models/form_state/prile_form_state.dart';
 import 'package:abu_pay/screens/tab_box/home_screen/new_card_screen/new_csrd_screen.dart';
 import 'package:abu_pay/utils/colors/app_colors.dart';
 import 'package:abu_pay/utils/images/app_images.dart';
@@ -150,9 +151,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       ))
                 ],
               )),
-          BlocBuilder<CardBloc , CardState>(
-              builder: (context , state){
-                if(state.cards.isNotEmpty){
+          BlocConsumer<CardBloc , CardState>(
+              builder: (BuildContext context ,CardState state){
+                print("UZUNLIGI MANASHU ${state.cards.length}-------------------------");
+                if(state.status == FormsSatus.succes){
+                  print("UZUNLIGI MANASHU ${state.cards.length}-------------------------");
+                  print("katta");
                   Container(
                     margin: EdgeInsets.only(
                       top: 250.h,
@@ -163,9 +167,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           topLeft: Radius.circular(30.r),
                         ),
                         color: Colors.white),
+                    child : Center(
+                        child : Text("No cardvachhca ", style: TextStyle(
+                            color : Colors.black,
+                            fontSize: 35.sp,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: AppImages.fontPoppins
+                        ),)
+                    )
                   );
                 }
-                if(state.cards.isEmpty){
+                if(state.status == FormsSatus.error){
+                  print("kichik");
                   return Container(
                       margin: EdgeInsets.only(
                         top: 250.h,
@@ -186,6 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                   );
                 }
+                print("olib ket");
                 return Container(
                     margin: EdgeInsets.only(
                       top: 250.h,
@@ -202,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                     )
                 );
-              }
+              }, listener: (BuildContext context, CardState state) {  },
           )
         ],
       ),

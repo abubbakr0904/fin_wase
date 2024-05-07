@@ -5,6 +5,7 @@ import 'package:abu_pay/data/models/card_model/card_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../blocs/user/user_bloc.dart';
 
@@ -59,6 +60,20 @@ class _AddCardScreenState extends State<AddCardScreen> {
                     BlocProvider.of<CardBloc>(context).add(
                       AddCardUserCollectionEvent(cardModel: cardModel)
                     );
+                    if(state.successMessage == "orre"){
+                      Navigator.pop(context);
+                    }
+                    else{
+                      Fluttertoast.showToast(
+                        msg: "Card not found",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.TOP,
+                        timeInSecForIosWeb: 1,
+                        textColor: Colors.red,
+                        backgroundColor: Colors.white,
+                        fontSize: 16.0,
+                      );
+                    }
                   }, child: Text("Add"))
                 ],
               ),

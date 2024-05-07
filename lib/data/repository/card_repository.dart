@@ -72,7 +72,7 @@ class CardReposritory {
   Future<NetworkResponse> getCards() async {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection(AppConstants.base,)
+          .collection(AppConstants.cardbase,)
           .get();
       List<CardModel> cards = querySnapshot.docs
           .map((e) => CardModel.fromJson(e.data() as Map<String, dynamic>))

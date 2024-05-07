@@ -28,15 +28,18 @@ class CardBloc extends Bloc<CardEvent, CardState> {
     NetworkResponse networkResponse =
         await cardReposritory.insertCard(event.cardModel);
     if (networkResponse.errorText.isEmpty) {
+      print("malades---------------------------");
       emit(
         state.copyWith(
           status: FormsSatus.succes,
           profileModel: event.cardModel,
+          successMessage: "orre"
         ),
       );
     } else {
+      print("xato --------------------------");
       emit(state.copyWith(
-        successMessage: networkResponse.errorText,
+        errorMessage: networkResponse.errorText,
         status: FormsSatus.error,
       ));
     }
