@@ -139,7 +139,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       )),
                   TextButton(
                       onPressed: () {
-                        Navigator.push(context, CupertinoPageRoute(builder: (context)=> const AddCardScreen()));
+                        Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) => const AddCardScreen()));
                       },
                       child: Text(
                         "+ Add Card",
@@ -151,56 +154,85 @@ class _HomeScreenState extends State<HomeScreen> {
                       ))
                 ],
               )),
-          BlocConsumer<CardBloc , CardState>(
-              builder: (BuildContext context ,CardState state){
-                print("UZUNLIGI MANASHU ${state.cards.length}-------------------------");
-                if(state.status == FormsSatus.succes){
-                  print("UZUNLIGI MANASHU ${state.cards.length}-------------------------");
-                  print("katta");
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: 250.h,
-                    ),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(30.r),
-                          topLeft: Radius.circular(30.r),
-                        ),
-                        color: Colors.white),
-                    child : Center(
-                        child : Text("No cardvachhca ", style: TextStyle(
-                            color : Colors.black,
-                            fontSize: 35.sp,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: AppImages.fontPoppins
-                        ),)
-                    )
-                  );
-                }
-                if(state.status == FormsSatus.error){
-                  print("kichik");
-                  return Container(
-                      margin: EdgeInsets.only(
-                        top: 250.h,
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(30.r),
-                            topLeft: Radius.circular(30.r),
-                          ),
-                          color: Colors.white),
-                      child : Center(
-                          child : Text("No cards 😐" , style: TextStyle(
-                              color : Colors.black,
-                              fontSize: 35.sp,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: AppImages.fontPoppins
-                          ),)
-                      )
-                  );
-                }
-                print("olib ket");
+          BlocConsumer<CardBloc, CardState>(
+            builder: (BuildContext context, CardState state) {
+              print(
+                  "UZUNLIGI MANASHU ${state.cards.length}-------------------------");
+              if (state.status == FormsSatus.succes) {
                 return Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: double.infinity,
+                  margin: EdgeInsets.only(
+                    top: 250.h,
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(30.r),
+                        topLeft: Radius.circular(30.r),
+                      ),
+                      color: Colors.white),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ...List.generate(
+                          state.cards.length,
+                          (index) => Container(
+                            height: 150.h,
+                            padding: EdgeInsets.all(20.w),
+                            margin: EdgeInsets.all(15.w),
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(width: 2.w, color: Colors.black),
+                                borderRadius: BorderRadius.circular(20.r)),
+                            child: Column(
+                              children: [
+                                Text(
+                                  state.cards[index].cardNumber,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 25.sp,
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: AppImages.fontPoppins),
+                                ),
+                                SizedBox(
+                                  height: 25.h,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      state.cards[index].cardHolder,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 25.sp,
+                                          fontWeight: FontWeight.w600,
+                                          fontFamily: AppImages.fontPoppins),
+                                    ),
+                                    Text(
+                                      "Visa",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 25.sp,
+                                          fontWeight: FontWeight.w600,
+                                          fontFamily: AppImages.fontPoppins),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              }
+              if (state.cards.length == 0) {
+                return Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height,
                     margin: EdgeInsets.only(
                       top: 250.h,
                     ),
@@ -210,13 +242,35 @@ class _HomeScreenState extends State<HomeScreen> {
                           topLeft: Radius.circular(30.r),
                         ),
                         color: Colors.white),
-                    child : const Center(
-                        child : CircularProgressIndicator(
-                          color: AppColors.accentBlue,
-                        )
-                    )
-                );
-              }, listener: (BuildContext context, CardState state) {  },
+                    child: Center(
+                        child: Text(
+                      "No cards 😐",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 35.sp,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: AppImages.fontPoppins),
+                    )));
+              }
+              print("olib ket");
+              return Container(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height,
+                  margin: EdgeInsets.only(
+                    top: 250.h,
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(30.r),
+                        topLeft: Radius.circular(30.r),
+                      ),
+                      color: Colors.white),
+                  child: const Center(
+                      child: CircularProgressIndicator(
+                    color: AppColors.accentBlue,
+                  )));
+            },
+            listener: (BuildContext context, CardState state) {},
           )
         ],
       ),

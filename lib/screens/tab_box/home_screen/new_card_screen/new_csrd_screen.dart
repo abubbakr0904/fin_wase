@@ -2,6 +2,7 @@ import 'package:abu_pay/blocs/card/card_bloc.dart';
 import 'package:abu_pay/blocs/card/card_event.dart';
 import 'package:abu_pay/blocs/user/user_state.dart';
 import 'package:abu_pay/data/models/card_model/card_model.dart';
+import 'package:abu_pay/data/models/form_state/prile_form_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -60,10 +61,10 @@ class _AddCardScreenState extends State<AddCardScreen> {
                     BlocProvider.of<CardBloc>(context).add(
                       AddCardUserCollectionEvent(cardModel: cardModel)
                     );
-                    if(state.successMessage == "orre"){
+                    if(state.status == FormsSatus.succes){
                       Navigator.pop(context);
                     }
-                    else{
+                    if(state.status == FormsSatus.error){
                       Fluttertoast.showToast(
                         msg: "Card not found",
                         toastLength: Toast.LENGTH_SHORT,

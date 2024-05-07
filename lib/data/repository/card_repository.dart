@@ -69,26 +69,12 @@ class CardReposritory {
     }
   }
 
-  Future<NetworkResponse> getCards() async {
-    try {
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection(AppConstants.cardbase,)
-          .get();
-      List<CardModel> cards = querySnapshot.docs
-          .map((e) => CardModel.fromJson(e.data() as Map<String, dynamic>))
-          .toList();
-      return NetworkResponse(
-        data: cards,
-      );
-    } on FirebaseException catch (error) {
-      debugPrint(
-        error.message,
-      );
-      return NetworkResponse(
-        errorText: error.message ?? "NOMA'LUM XATOLIK!!!",
-      );
-    }
-  }
+  Stream<List<CardModel>> getCardByUserId() =>
+      FirebaseFirestore.instance
+          .collection(AppConstants.cardbase)
+          .snapshots()
+          .map((event) =>
+          event.docs.map((e) => CardModel.fromJson(e.data())).toList());
 
   // Future<NetworkResponse> updateUser(ProfileModel userModel) async {
   //   try {

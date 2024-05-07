@@ -14,30 +14,26 @@ class CardBloc extends Bloc<CardEvent, CardState> {
 
   CardBloc(this.cardReposritory)
       : super(CardState(
-            errorMessage: "",
-            successMessage: "",
-            status: FormsSatus.pure,
-            cardModel: CardModel.initial(),
-            cards: []
-  )) {
+      errorMessage: "",
+      successMessage: "",
+      status: FormsSatus.pure,
+      cardModel: CardModel.initial(),
+      cards: [])) {
     on<AddCardUserCollectionEvent>(_addCard);
     on<GetUserCards>(_getCards);
   }
 
   _addCard(AddCardUserCollectionEvent event, emit) async {
     NetworkResponse networkResponse =
-        await cardReposritory.insertCard(event.cardModel);
+    await cardReposritory.insertCard(event.cardModel);
     if (networkResponse.errorText.isEmpty) {
-      print("malades---------------------------");
       emit(
         state.copyWith(
-          status: FormsSatus.succes,
-          profileModel: event.cardModel,
-          successMessage: "orre"
-        ),
+            status: FormsSatus.succes,
+            profileModel: event.cardModel,
+            successMessage: "orre"),
       );
     } else {
-      print("xato --------------------------");
       emit(state.copyWith(
         errorMessage: networkResponse.errorText,
         status: FormsSatus.error,
@@ -45,20 +41,18 @@ class CardBloc extends Bloc<CardEvent, CardState> {
     }
   }
 
-  _getCards(GetUserCards event, emit) async {
-    NetworkResponse networkResponse = await cardReposritory.getCards();
-    if (networkResponse.errorText.isEmpty) {
-      emit(
-        state.copyWith(
-          status: FormsSatus.succes,
-          cards: networkResponse.data
-        ),
-      );
-    } else {
-      emit(state.copyWith(
-        successMessage: networkResponse.errorText,
-        status: FormsSatus.error,
-      ));
+  _getCards(GetUserCards event, Emitter emit) async {
+    // NetworkResponse networkResponse = await cardReposritory.getCardByUserId();
+      await emit
+          .onEach(cardReposritory.getCardByUserId() as Stream<List<CardModel>>,
+          onData: (List<CardModel> userCards) {
+            emit(
+              state.copyWith(
+                  status: FormsSatus.succes, cards: userCards),
+            );
+          });
     }
+
+
   }
-}
+
