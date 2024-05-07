@@ -90,7 +90,7 @@ import '../../data/responce/network_responce.dart';
 class UserProfileBloc extends Bloc<UserEvent, UserState> {
   UserProfileBloc(this.userProfileRepository)
       : super(UserState(
-    profileModel: ProfileModel.initial(),
+    carModel: ProfileModel.initial(),
     status: FormsSatus.pure,
     errorMessage: "",
     successMessage: "",

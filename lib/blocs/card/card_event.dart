@@ -25,3 +25,8 @@ class AddCardUserCollectionEvent extends CardEvent {
   @override
   List<Object> get props => [cardModel];
 }
+class GetUserCards extends CardEvent {
+
+  @override
+  List<Object> get props => [];
+}

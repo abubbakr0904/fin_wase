@@ -134,7 +134,7 @@ class UserProfileRepo {
               documentReference.id,
             )
             .update({
-          "cardDocId": documentReference.id,
+          "userId": documentReference.id,
         });
       }
 

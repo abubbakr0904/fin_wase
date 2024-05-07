@@ -33,14 +33,17 @@ class _AddCardScreenState extends State<AddCardScreen> {
                 children: [
                   TextField(
                     controller: number,
+                    keyboardType: TextInputType.number,
+
                   ),
                   SizedBox(height: 20.h,),
                   TextField(
                     controller: date,
+                    keyboardType: TextInputType.number,
                   ),
                   TextButton(onPressed: () {
                     CardModel cardModel = CardModel(
-                        cardHolder:state.profileModel.username,
+                        cardHolder:state.carModel.username,
                         cardName: "",
                         expireDate: date.text,
                         userDocId: "",

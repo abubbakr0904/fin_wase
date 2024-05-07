@@ -8,26 +8,33 @@ class CardState extends Equatable {
   final String errorMessage;
   final String successMessage;
   final FormsSatus status;
+  final List<CardModel> cards;
 
   const CardState(
       {required this.errorMessage,
         required this.successMessage,
         required this.status,
-        required this.cardModel});
+        required this.cardModel,
+        required this.cards
+      });
 
   CardState copyWith(
       {String? errorMessage,
         String? successMessage,
         FormsSatus? status,
-        CardModel? profileModel}) {
+        CardModel? profileModel,
+        List<CardModel>? cards
+      }) {
     return CardState(
         errorMessage: errorMessage ?? this.errorMessage,
         successMessage: successMessage ?? this.successMessage,
         status: status ?? this.status,
-        cardModel: profileModel ?? this.cardModel);
+        cardModel: profileModel ?? this.cardModel,
+        cards: cards ?? this.cards
+    );
   }
 
   @override
   List<Object> get props =>
-      [status, errorMessage, successMessage, cardModel];
+      [status, errorMessage, successMessage, cardModel , cards];
 }

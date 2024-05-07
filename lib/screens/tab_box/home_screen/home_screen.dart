@@ -1,10 +1,14 @@
+import 'package:abu_pay/blocs/card/card_bloc.dart';
 import 'package:abu_pay/screens/tab_box/home_screen/new_card_screen/new_csrd_screen.dart';
 import 'package:abu_pay/utils/colors/app_colors.dart';
 import 'package:abu_pay/utils/images/app_images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../blocs/card/card_state.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -146,16 +150,59 @@ class _HomeScreenState extends State<HomeScreen> {
                       ))
                 ],
               )),
-          Container(
-            margin: EdgeInsets.only(
-              top: 250.h,
-            ),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(30.r),
-                  topLeft: Radius.circular(30.r),
-                ),
-                color: Colors.white),
+          BlocBuilder<CardBloc , CardState>(
+              builder: (context , state){
+                if(state.cards.isNotEmpty){
+                  Container(
+                    margin: EdgeInsets.only(
+                      top: 250.h,
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(30.r),
+                          topLeft: Radius.circular(30.r),
+                        ),
+                        color: Colors.white),
+                  );
+                }
+                if(state.cards.isEmpty){
+                  return Container(
+                      margin: EdgeInsets.only(
+                        top: 250.h,
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(30.r),
+                            topLeft: Radius.circular(30.r),
+                          ),
+                          color: Colors.white),
+                      child : Center(
+                          child : Text("No cards 😐" , style: TextStyle(
+                              color : Colors.black,
+                              fontSize: 35.sp,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: AppImages.fontPoppins
+                          ),)
+                      )
+                  );
+                }
+                return Container(
+                    margin: EdgeInsets.only(
+                      top: 250.h,
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(30.r),
+                          topLeft: Radius.circular(30.r),
+                        ),
+                        color: Colors.white),
+                    child : const Center(
+                        child : CircularProgressIndicator(
+                          color: AppColors.accentBlue,
+                        )
+                    )
+                );
+              }
           )
         ],
       ),

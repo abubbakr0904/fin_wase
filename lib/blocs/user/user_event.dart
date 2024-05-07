@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+import '../../data/models/card_model/card_model.dart';
 import '../../data/models/user_model/user_model.dart';
 
 abstract class UserEvent extends Equatable {

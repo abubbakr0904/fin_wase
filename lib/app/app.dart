@@ -1,4 +1,5 @@
 import 'package:abu_pay/blocs/card/card_bloc.dart';
+import 'package:abu_pay/blocs/card/card_event.dart';
 import 'package:abu_pay/blocs/connectivity/connectivity_bloc.dart';
 import 'package:abu_pay/blocs/user/user_bloc.dart';
 import 'package:abu_pay/data/repository/card_repository.dart';
@@ -54,7 +55,7 @@ class App extends StatelessWidget {
               create: (context) =>
                   CardBloc(
                     CardReposritory(),
-                  ),
+                  )..add(GetUserCards()),
             ),
           ],
           child: ScreenUtilInit(

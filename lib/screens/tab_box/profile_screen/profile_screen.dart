@@ -29,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         body: BlocConsumer<UserProfileBloc, UserState>(
       builder: (context, state) {
         if (state.successMessage == "authjon") {
-          print(state.profileModel.username);
+          print(state.carModel.username);
         }
         return Stack(
           children: [
@@ -70,7 +70,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child : Column(
                           children: [
                             Text(
-                              state.profileModel.username,
+                              state.carModel.username,
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 20.sp,
@@ -79,7 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ),
                             Text(
-                              state.profileModel.email,
+                              state.carModel.email,
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 20.sp,

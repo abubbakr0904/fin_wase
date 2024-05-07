@@ -38,11 +38,10 @@ class CardReposritory {
           dicid = user.userId;
         }
       }
-
-      if (!isExists) {
+      if (isExists) {
         DocumentReference documentReference = await FirebaseFirestore.instance
             .collection(
-          AppConstants.base,
+          AppConstants.cardbase,
         ).add(cardModel.toJson());
         await FirebaseFirestore.instance
             .collection(AppConstants.cardbase,)
@@ -52,11 +51,34 @@ class CardReposritory {
           "userDocId" : dicid,
           "bankName" : cards[a].bankName,
           "cardName" : cards[a].cardName,
-          "balance" : cards[a].balance
+          "balance" : cards[a].balance,
+          "expireDate" : cards[a].expireDate,
         });
       }
       return NetworkResponse(
         data: "success",
+      );
+    } on FirebaseException catch (error) {
+      print("xaty-------");
+      debugPrint(
+        error.message,
+      );
+      return NetworkResponse(
+        errorText: error.message ?? "NOMA'LUM XATOLIK!!!",
+      );
+    }
+  }
+
+  Future<NetworkResponse> getCards() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection(AppConstants.base,)
+          .get();
+      List<CardModel> cards = querySnapshot.docs
+          .map((e) => CardModel.fromJson(e.data() as Map<String, dynamic>))
+          .toList();
+      return NetworkResponse(
+        data: cards,
       );
     } on FirebaseException catch (error) {
       debugPrint(
