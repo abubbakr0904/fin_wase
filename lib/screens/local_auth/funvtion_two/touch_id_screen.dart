@@ -22,46 +22,50 @@ class _TouchIdScreenState extends State<TouchIdScreen> {
       appBar: AppBar(
         title: Text("Touch id"),
       ),
-      body: Column(
-        children: [
-          Icon(
-            Icons.fingerprint_outlined,
-            size: 100.sp,
-            color: Colors.blueAccent,
-          ),
-          SizedBox(
-            width: 207.w,
-            child: TextButton(
-                style: TextButton.styleFrom(
-                    backgroundColor: AppColors.accentBlue),
-                onPressed: enableBiometrics,
-                child: Text(
-                  "Biometrik Auth",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: AppImages.fontPoppins),
-                )),
-          ),
-          SizedBox(
-            width: 207.w,
-            child: TextButton(
-                style: TextButton.styleFrom(
-                    backgroundColor: AppColors.accentBlue),
-                onPressed: (){
-                  Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context)=> const TabBox1()), (route) => false);
-                },
-                child: Text(
-                  "Skip",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: AppImages.fontPoppins),
-                )),
-          ),
-        ],
+      body: Container(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.fingerprint_outlined,
+              size: 100.sp,
+              color: Colors.blueAccent,
+            ),
+            SizedBox(
+              width: 207.w,
+              child: TextButton(
+                  style: TextButton.styleFrom(
+                      backgroundColor: AppColors.accentBlue),
+                  onPressed: enableBiometrics,
+                  child: Text(
+                    "Biometrik Auth",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: AppImages.fontPoppins),
+                  )),
+            ),
+            SizedBox(
+              width: 207.w,
+              child: TextButton(
+                  style: TextButton.styleFrom(
+                      backgroundColor: AppColors.accentBlue),
+                  onPressed: (){
+                    Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context)=> const TabBox1()), (route) => false);
+                  },
+                  child: Text(
+                    "Skip",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: AppImages.fontPoppins),
+                  )),
+            ),
+          ],
+        ),
       ),
     );
   }

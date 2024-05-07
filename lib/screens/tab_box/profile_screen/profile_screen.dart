@@ -58,71 +58,119 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       topLeft: Radius.circular(50.r),
                     ),
                     color: Colors.white),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: 50.h
-                      ),
-                      width: double.infinity,
-                      child : Column(
-                        children: [
-                          Text(
-                            state.profileModel.username,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: AppImages.fontPoppins,
-                            ),
-                          ),
-                          Text(
-                            state.profileModel.email,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: AppImages.fontPoppins,
-                            ),
-                            textAlign: TextAlign.center,
-                          )
-                        ],
-                      )
-                    ),
-                    Container(
-                      color : Colors.red,
-                      width: double.infinity,
-                      child : Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 57.w,
-                            height: 57.h,
-                            margin: EdgeInsets.only(top: 30.h),
-                            decoration: BoxDecoration(
-                              color: AppColors.accentBlue,
-                              borderRadius: BorderRadius.circular(25.r)
-                            ),
-                            child : Center(
-                              child : SvgPicture.asset(AppImages.profile)
-                            )
-                          ),
-                          Container(
-                            height: 57.h,
-                            child: Center(
-                              child: Text("Edit Profile" , style: TextStyle(
-                                color : Colors.black,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: 50.h
+                        ),
+                        width: double.infinity,
+                        child : Column(
+                          children: [
+                            Text(
+                              state.profileModel.username,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w500,
                                 fontFamily: AppImages.fontPoppins,
-                                fontWeight:FontWeight.w500,
-                                fontSize: 20.sp
-                              ),),
+                              ),
                             ),
+                            Text(
+                              state.profileModel.email,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: AppImages.fontPoppins,
+                              ),
+                              textAlign: TextAlign.center,
+                            )
+                          ],
+                        )
+                      ),
+                      Container(
+                          width: double.infinity,
+                          child : Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                  width: 57.w,
+                                  height: 57.h,
+                                  margin: EdgeInsets.only(top: 30.h),
+                                  decoration: BoxDecoration(
+                                      color: AppColors.accentBlue,
+                                      borderRadius: BorderRadius.circular(25.r)
+                                  ),
+                                  child : Center(
+                                      child : SvgPicture.asset(AppImages.profile)
+                                  )
+                              ),
+                              Text("Edit Profile" , style: TextStyle(
+                                  color : Colors.black,
+                                  fontFamily: AppImages.fontPoppins,
+                                  fontWeight:FontWeight.w500,
+                                  fontSize: 20.sp
+                              ),)
+                            ],
                           )
-                        ],
-                      )
-                    )
-                  ],
+                      ),
+                      Container(
+                          width: double.infinity,
+                          child : Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                  width: 57.w,
+                                  height: 57.h,
+                                  margin: EdgeInsets.only(top: 30.h),
+                                  decoration: BoxDecoration(
+                                      color: AppColors.accentBlue,
+                                      borderRadius: BorderRadius.circular(25.r)
+                                  ),
+                                  child : Center(
+                                      child : SvgPicture.asset(AppImages.profile)
+                                  )
+                              ),
+                              Text("Edit Profile" , style: TextStyle(
+                                  color : Colors.black,
+                                  fontFamily: AppImages.fontPoppins,
+                                  fontWeight:FontWeight.w500,
+                                  fontSize: 20.sp
+                              ),)
+                            ],
+                          )
+                      ),
+                      Container(
+                          width: double.infinity,
+                          child : Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                  width: 57.w,
+                                  height: 57.h,
+                                  margin: EdgeInsets.only(top: 30.h),
+                                  decoration: BoxDecoration(
+                                      color: AppColors.accentBlue,
+                                      borderRadius: BorderRadius.circular(25.r)
+                                  ),
+                                  child : Center(
+                                      child : SvgPicture.asset(AppImages.profile)
+                                  )
+                              ),
+                              Text("Edit Profile" , style: TextStyle(
+                                  color : Colors.black,
+                                  fontFamily: AppImages.fontPoppins,
+                                  fontWeight:FontWeight.w500,
+                                  fontSize: 20.sp
+                              ),)
+                            ],
+                          )
+                      ),
+                    ],
+                  ),
                 )),
             Container(
               width: double.infinity,

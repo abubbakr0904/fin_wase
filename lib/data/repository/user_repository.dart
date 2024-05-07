@@ -103,11 +103,8 @@ import 'package:flutter/cupertino.dart';
 class UserProfileRepo {
   Future<NetworkResponse> insertUser(ProfileModel userModel) async {
     try {
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection(
-            AppConstants.users,
-          )
-          .get();
+      QuerySnapshot querySnapshot =
+          await FirebaseFirestore.instance.collection(AppConstants.users).get();
 
       List<ProfileModel> users = querySnapshot.docs
           .map((e) => ProfileModel.fromJson(e.data() as Map<String, dynamic>))
@@ -137,7 +134,7 @@ class UserProfileRepo {
               documentReference.id,
             )
             .update({
-          "userId": documentReference.id,
+          "cardDocId": documentReference.id,
         });
       }
 
@@ -149,7 +146,6 @@ class UserProfileRepo {
         error.message,
       );
       return NetworkResponse(
-
         errorText: error.message ?? "NOMA'LUM XATOLIK!!!",
       );
     }
@@ -224,7 +220,6 @@ class UserProfileRepo {
         error.message,
       );
       return NetworkResponse(
-
         errorText: error.message ?? "NOMA'LUM XATOLIK!!!",
       );
     }
@@ -232,10 +227,8 @@ class UserProfileRepo {
 
   Future<NetworkResponse> getUserByUUId() async {
     try {
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection(AppConstants.users)
-          .where("authUUId", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-          .get();
+      QuerySnapshot querySnapshot =
+          await FirebaseFirestore.instance.collection(AppConstants.users).get();
 
       List<ProfileModel> users = querySnapshot.docs
           .map(
@@ -244,11 +237,24 @@ class UserProfileRepo {
             ),
           )
           .toList();
+      ProfileModel profileModel = ProfileModel(username: "", lastname: "", password: "", email: "", imageUrl: "", phoneNumber: "", userId: "", fcmToken: "", uuid: "");
+      for(var i in users){
+        if(i.uuid == FirebaseAuth.instance.currentUser!.uid){
+          profileModel = profileModel.copyWith(
+            uuid: i.uuid,
+            username: i.username,
+            password: i.password,
+            email: i.email,
+            phoneNumber: i.phoneNumber,
+            userId: i.userId,
+          );
+        }
+      }
 
       UtilityFunctions.printMethod(
           "\$\$\$\$\$\$\nTHIS IS USERS IS LENGTH: ${users.length}\n\$\$\$\$\$\$");
       return NetworkResponse(
-        data: users.isEmpty ? ProfileModel.initial() : users[0],
+        data: users.isEmpty ? ProfileModel.initial() : profileModel,
       );
     } on FirebaseException catch (error) {
       debugPrint(

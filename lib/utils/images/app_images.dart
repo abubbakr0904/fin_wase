@@ -8,6 +8,9 @@ class AppImages {
   static const layer = "assets/icons/layer.svg";
   static const profile = "assets/icons/profile.svg";
   static const arrows = "assets/icons/arrows.svg";
+  static const jingle = "assets/icons/jingle.svg";
+  static const total = "assets/icons/total.svg";
+  static const total2 = "assets/icons/total2.svg";
 
   //png
   static const tanga = "assets/images/tanga.png";

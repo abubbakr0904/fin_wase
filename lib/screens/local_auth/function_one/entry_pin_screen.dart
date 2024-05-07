@@ -44,9 +44,7 @@ class _EntryPinScreenState extends State<EntryPinScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Entry pin"),
-      ),
+
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -56,7 +54,7 @@ class _EntryPinScreenState extends State<EntryPinScreen> {
             "Pin kod kiriting!",
             style: TextStyle(fontSize: 20.sp),
           ),
-          SizedBox(height: 32.h,),
+          SizedBox(height: 22.h,),
           SizedBox(
             width: MediaQuery.of(context).size.width / 2,
             child: PinPutTextView(
@@ -64,7 +62,7 @@ class _EntryPinScreenState extends State<EntryPinScreen> {
                 pinPutController: pinPutController,
                 isError: isError),
           ),
-          SizedBox(height: 32.h,),
+          SizedBox(height: 12.h,),
           Text(
             isError ? "Pin kod noto'g'ri!" : "",
             style: TextStyle(fontSize: 20.sp, color: Colors.red),

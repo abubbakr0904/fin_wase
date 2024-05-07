@@ -1,3 +1,4 @@
+import 'package:abu_pay/data/local/storage_repository.dart';
 import 'package:abu_pay/screens/local_auth/function_one/confirm_pin_screen.dart';
 import 'package:abu_pay/screens/local_auth/widget/keyboard.dart';
 import 'package:abu_pay/screens/local_auth/widget/pin_put.dart';
@@ -22,7 +23,7 @@ class _SetPinScreenState extends State<SetPinScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Entry pin"),
+        title: Text("set pin"),
       ),
       body: Column(
         children: [
@@ -46,7 +47,10 @@ class _SetPinScreenState extends State<SetPinScreen> {
                 pinPutController.text = "${pinPutController.text}$number";
               }
               if (pinPutController.length == 4) {
-                Navigator.push(context, CupertinoPageRoute(builder: (context)=> const ConfirmPinScreen(previousPin: previousPin)))
+                print("aaaaaaaaaaaaaa\n\n\n\n");
+                print(pinPutController.text);
+                StorageRepository.setString(key: "pinkod", value: pinPutController.text);
+                Navigator.push(context, CupertinoPageRoute(builder: (context)=> ConfirmPinScreen(previousPin: pinPutController.text)));
                 pinPutController.text = "";
               }
             },

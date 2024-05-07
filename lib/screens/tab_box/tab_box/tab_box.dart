@@ -60,7 +60,7 @@ class _TabBox1State extends State<TabBox1> {
                 width: 50.w,
                 height: 50.w,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.r),
+                    borderRadius: BorderRadius.circular(21.r),
                     color : AppColors.accentBlue
                 ),
                 child : Center(child: SvgPicture.asset(AppImages.homeIcon))
@@ -73,7 +73,7 @@ class _TabBox1State extends State<TabBox1> {
                 width: 50.w,
                 height: 50.w,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.r),
+                    borderRadius: BorderRadius.circular(21.r),
                     color : AppColors.accentBlue
                 ),
                 child : Center(child: SvgPicture.asset(AppImages.arrows))
@@ -86,7 +86,7 @@ class _TabBox1State extends State<TabBox1> {
                 width: 50.w,
                 height: 50.w,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.r),
+                    borderRadius: BorderRadius.circular(21.r),
                     color : AppColors.accentBlue
                 ),
                 child : Center(child: SvgPicture.asset(AppImages.layer))
@@ -99,7 +99,7 @@ class _TabBox1State extends State<TabBox1> {
                 width: 50.w,
                 height: 50.w,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.r),
+                    borderRadius: BorderRadius.circular(21.r),
                     color : AppColors.accentBlue
                 ),
                 child : Center(child: SvgPicture.asset(AppImages.profile))

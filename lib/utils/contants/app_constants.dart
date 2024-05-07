@@ -9,4 +9,6 @@ class AppConstants {
   //basu_url
   static const String baseUr = "https://api.tohirjon.uz/swagger/index.html";
   static const String users = "users";
+  static const String base = "card_base";
+  static const String cardbase = "card_user";
 }

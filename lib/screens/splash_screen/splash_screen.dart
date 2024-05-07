@@ -1,8 +1,11 @@
 // import 'package:abu_pay/screens/local_auth/entry_password.dart';
+import 'package:abu_pay/screens/local_auth/function_one/entry_pin_screen.dart';
+import 'package:abu_pay/screens/local_auth/function_one/set_pin_screen.dart';
 import 'package:abu_pay/screens/on_boarding/on_boarding_screen.dart';
 import 'package:abu_pay/utils/colors/app_colors.dart';
 import 'package:abu_pay/utils/utility_functions/utility_funstions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -26,9 +29,8 @@ class _SplashScreenState extends State<SplashScreen> {
       UtilityFunctions.printMethod("Katta qilin");
       if (user != null) {
         UtilityFunctions.printMethod("null emas");
-        Navigator.pushAndRemoveUntil(
-            context, MaterialPageRoute(builder: (context) => const TabBox1()), (
-            route) => false);
+        Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => StorageRepository.getString(key: "pin_code").isNotEmpty ? EntryPinScreen() : SetPinScreen() ), (route) => false);
+        // Navigator.pushAndRemoveUntil(context, CupertinoPageRtoute(builder: (context)=> const TabBox1()), (route) => false);
       } else {
         bool isNewUser = StorageRepository.getBool(key: "is_new_user");
         UtilityFunctions.printMethod(isNewUser);

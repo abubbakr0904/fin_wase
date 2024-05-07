@@ -6,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
-
 import '../../../data/local/storage_repository.dart';
 import '../../../service/local_services.dart';
 import '../widget/keyboard.dart';
@@ -24,9 +23,12 @@ class _ConfirmPinScreenState extends State<ConfirmPinScreen> {
   final FocusNode focusNode = FocusNode();
   bool isError = false;
   bool isBiometricsEnabled = false;
+  String pinkod = "";
 
   @override
   void initState() {
+    pinkod = StorageRepository.getString(key: "pinkod");
+    print("hammasi katta : $pinkod");
     BiometricAuthService.canAuthenticate().then(
           (value) {
         if (value) {
@@ -41,7 +43,7 @@ class _ConfirmPinScreenState extends State<ConfirmPinScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Entry pin"),
+        title: Text("confirm pin"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -49,7 +51,7 @@ class _ConfirmPinScreenState extends State<ConfirmPinScreen> {
         children: [
           SizedBox(height: 60.h),
           Text(
-            "Pin kodlar  O'mos emas!",
+            "Pin kodni qayta kiriting!",
             style: TextStyle(fontSize: 20.sp),
           ),
           SizedBox(height: 32.h,),
@@ -67,7 +69,8 @@ class _ConfirmPinScreenState extends State<ConfirmPinScreen> {
                 pinPutController.text = "${pinPutController.text}$number";
               }
               if (pinPutController.length == 4) {
-                if (widget.previousPin == pinPutController.text) {
+                if (pinkod == pinPutController.text) {
+                  print("salom");
                   _setPin(pinPutController.text);
                 } else {
                   isError = true;

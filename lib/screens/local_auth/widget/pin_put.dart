@@ -58,7 +58,7 @@ class PinPutTextView extends StatelessWidget {
           ),
         ),
         followingPinTheme: defaultPnTheme,
-        pinAnimationType: PinAnimationType.slide,
+        pinAnimationType: PinAnimationType.fade,
       ),
     );
   }

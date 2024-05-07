@@ -5,6 +5,7 @@ import 'package:abu_pay/blocs/user/user_bloc.dart';
 import 'package:abu_pay/blocs/user/user_event.dart';
 import 'package:abu_pay/data/models/form_state/prile_form_state.dart';
 import 'package:abu_pay/data/models/user_model/user_model.dart';
+import 'package:abu_pay/screens/local_auth/function_one/set_pin_screen.dart';
 import 'package:abu_pay/screens/tab_box/tab_box/tab_box.dart';
 import 'package:abu_pay/utils/colors/app_colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -56,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const TabBox1(),
+                  builder: (context) => const SetPinScreen(),
                 ),
               );
             }
@@ -452,3 +453,5 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.dispose();
   }
 }
+
+
