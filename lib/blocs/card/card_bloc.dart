@@ -42,7 +42,6 @@ class CardBloc extends Bloc<CardEvent, CardState> {
   }
 
   _getCards(GetUserCards event, Emitter emit) async {
-    // NetworkResponse networkResponse = await cardReposritory.getCardByUserId();
       await emit
           .onEach(cardReposritory.getCardByUserId() as Stream<List<CardModel>>,
           onData: (List<CardModel> userCards) {

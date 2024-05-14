@@ -1,4 +1,5 @@
 import 'package:abu_pay/screens/tab_box/profile_screen/profile_screen.dart';
+import 'package:abu_pay/screens/tab_box/transaction/transaction.dart';
 import 'package:abu_pay/utils/colors/app_colors.dart';
 import 'package:abu_pay/utils/images/app_images.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../blocs/user/user_bloc.dart';
 import '../../../blocs/user/user_event.dart';
 import '../home_screen/home_screen.dart';
@@ -26,7 +26,7 @@ class _TabBox1State extends State<TabBox1> {
   void initState() {
     _screens = [
       const HomeScreen(),
-      const HomeScreen(),
+      const TransferScreen(),
       const HomeScreen(),
       const ProfileScreen(),
     ];
@@ -79,7 +79,7 @@ class _TabBox1State extends State<TabBox1> {
                 child : Center(child: SvgPicture.asset(AppImages.arrows))
             ),
             icon: SvgPicture.asset(AppImages.arrows),
-            label: "Extend",
+            label: "Transaction",
           ),
           BottomNavigationBarItem(
             activeIcon: Container(

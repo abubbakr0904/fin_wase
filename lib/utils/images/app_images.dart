@@ -17,8 +17,9 @@ class AppImages {
   static const telefonQol = "assets/images/telefon_qol.png";
   static const profilePng = "assets/images/profile.png";
 
-
-
+  //lottie
+  static const String emptyLottie = "assets/lottie/Animation - 1709736841935.json";
+  static const String empttyLottie = "assets/lottie/ruh.json";
   //fonts
   static const fontPoppins = "Poppins";
 }
